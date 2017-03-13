@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.dqsy.manager.mapper.CustomerMapper">
+
+
+    <resultMap id="customer" type="Customer">
+        <id column="cid" property="cid" />
+        <result column="cust_name" property="cust_name" />
+        <result column="cust_type" property="cust_type" />
+        <result column="cust_phone" property="cust_phone" />
+        <result column="cust_add" property="cust_add" />
+    </resultMap>
+
+
+    <select id="queryCustomerList" resultMap="customer">
+        select * from s_cust
+    </select>
+</mapper>
