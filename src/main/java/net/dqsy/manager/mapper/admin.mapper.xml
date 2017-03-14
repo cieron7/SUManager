@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="admin">
+	
+	<!-- 条件 -->
+	<sql id="listWhereShow">
+		<if test="minCreateTime != null ">
+			AND fy_admin.create_time > #{minCreateTime}
+		</if>
+		<if test="maxCreateTime != null ">
+			<![CDATA[
+				AND fy_admin.create_time < #{maxCreateTime}
+			]]>
+		</if>
+		<if test="id_ !=null">
+			AND fy_admin.id = #{id_}
+		</if>
+		<if test="id_S!=null">
+			AND fy_admin.id IN
+			<foreach collection="id_S" open="(" separator="," close=")" item="item">
+				#{item}
+			</foreach>
+		</if>
+		<if test="real_name_ !=null and real_name_ != '' ">
+			AND fy_admin.real_name = #{real_name_} 
+		</if>
+		<if test="real_name_L !=null and real_name_L != '' ">
+			AND fy_admin.real_name like CONCAT( '%',#{real_name_L},'%')
+		</if>
+		<if test="user_name_ !=null and user_name_ != '' ">
+			AND fy_admin.user_name = #{user_name_} 
+		</if>
+		<if test="user_name_L !=null and user_name_L != '' ">
+			AND fy_admin.user_name like CONCAT( '%',#{user_name_L},'%')
+		</if>
+		<if test="phone_ !=null and phone_ != '' ">
+			AND fy_admin.phone = #{phone_}
+		</if>
+		<if test="istatus_ != null and istatus_ != '' ">
+			AND fy_admin.istatus = #{istatus_}
+		</if>
+		<if test="istatus_N!=null">
+			AND fy_admin.istatus !=#{istatus_N}
+		</if>
+		<if test="create_admin_ !=null">
+			AND create_admin = #{create_admin_}
+		</if>
+		<if test="update_admin_ != null">
+			AND update_admin = #{update_admin_}
+		</if>
+		<if test="delete_admin_ != null ">
+			AND delete_admin = #{delete_admin_}
+		</if>
+		<if test="superadmin_N!=null">
+			AND fy_admin.id!=#{superadmin_N}
+		</if>
+	</sql>
+	
+	<!-- 字段(不带主键) -->
+	<sql id="ziduan">
+		fy_admin.user_name,
+		fy_admin.real_name,
+		fy_admin.password,
+		fy_admin.notes,
+		fy_admin.email,
+		fy_admin.phone,
+		fy_admin.istatus,
+		fy_admin.create_admin,
+		fy_admin.create_time,
+		fy_admin.delete_admin,
+		fy_admin.delete_time,
+		fy_admin.update_admin,
+		fy_admin.update_time,
+		fy_admin.last_login_time
+	</sql>
+	
+	<!-- Admin管理员不分页查询 -->
+	<select id="list" parameterType="hashmap" resultType="com.yoke.data.params.DbResultMap">
+		SELECT
+			fy_admin.id,
+			<include refid="ziduan"/>
+		FROM
+			fy_admin
+		WHERE
+			1=1 
+			<include refid="listWhereShow"/>
+	</select>
+	
+	<!-- Admin管理员查询 -->
+	<select id="find" parameterType="hashmap" resultType="com.yoke.data.params.DbResultMap">
+		
+		SELECT
+			<choose>
+				<when test=" pagecount != true ">
+					fy_admin.id,
+					<include refid="ziduan"/>
+				</when>
+				<otherwise>
+					COUNT(id) as total
+				</otherwise>
+			</choose>
+		FROM
+			fy_admin
+		WHERE
+			1=1 
+			<include refid="listWhereShow"/>
+			<!-- 其他公共参数城市等  -->
+			<if test="commonParam!=null and commonParam != '' ">
+				${commonParam}
+			</if>
+			<!-- 排序分页 -->
+			<if test="pageSql!=null and pageSql != '' ">
+				${pageSql}
+			</if>
+	</select>
+	
+	<!-- 管理员添加  -->
+	<insert id="add" parameterType="map" keyProperty="id" useGeneratedKeys="true">
+		
+		INSERT INTO fy_admin(
+			<include refid="ziduan"/>
+		)
+		VALUES(
+			#{user_name},
+			#{real_name},
+			#{password},
+			#{notes},
+			#{email},
+			#{phone},
+			#{istatus},
+			#{create_admin},
+			NOW(),
+			#{delete_admin},
+			#{delete_time},
+			#{update_admin},
+			#{update_time},
+			#{last_login_time}
+		)
+		
+	</insert>
+	
+	<!-- 修改管理员  -->
+	<update id="update" parameterType="map" >
+		UPDATE 
+			fy_admin
+		<set>
+			fy_admin.id = fy_admin.id
+			<if test="user_name !=null and user_name !='' ">
+				,fy_admin.user_name = #{user_name}
+			</if>
+			<if test="password !=null and password != '' ">
+				,fy_admin.password = #{password}
+			</if>
+			<if test="real_name!=null and real_name != '' ">
+				,fy_admin.real_name = #{real_name}
+			</if>
+			<if test="notes != null and notes!= '' ">
+				,fy_admin.notes = #{notes}
+			</if>
+			<if test="email != null and email != '' ">
+				,fy_admin.email = #{email}
+			</if>
+			<if test="phone != null and  phone != '' ">
+				,fy_admin.phone = #{phone}
+			</if>
+			<if test="istatus != null ">
+				,fy_admin.istatus = #{istatus}
+			</if>
+			<if test="delete_admin != null">
+				,fy_admin.delete_admin = #{delete_admin}
+				,fy_admin.delete_time = NOW()
+			</if>
+			<if test="update_admin != null">
+				,fy_admin.update_admin = #{update_admin}
+				,fy_admin.update_time = NOW()
+			</if>
+			<if test="last_login_time !=null">
+				,fy_admin.last_login_time = NOW()
+			</if>
+		</set>
+		<where>
+			1=1
+			<include refid="listWhereShow"/>
+		</where>
+		
+	</update>
+	
+	
+	<!-- 查询管理员资源权限 -->
+	<select id="findAdminPermission" parameterType="hashmap" resultType="com.yoke.data.params.DbResultMap">
+		SELECT
+			fy_admin_role2resource2permission_type.resource_id,
+			fy_admin_role2resource2permission_type.permission_type_id
+		FROM
+			fy_admin 
+			INNER JOIN 
+			fy_admin2role 
+			ON fy_admin.id = fy_admin2role.admin_id
+			INNER JOIN
+			fy_admin_role2resource2permission_type
+			ON fy_admin2role.role_id = fy_admin_role2resource2permission_type.role_id
+		WHERE
+			fy_admin.id = #{admin_id_}
+	</select>
+	
+	
+	
+	
+</mapper>

@@ -15,12 +15,19 @@
     </context:component-scan>
 
 
-    <!-- 配置处理器映射器、适配器、视图解析器 -->
+    <!-- 启动Springmvc注解驱动 -->
     <mvc:annotation-driven/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/"/>
         <property name="suffix" value=".jsp"/>
+    </bean>
+
+
+    <!-- 文件上传 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="104857600"/>
+        <property name="maxInMemorySize" value="4096"/>
     </bean>
 
 </beans>
