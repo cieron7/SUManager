@@ -30,4 +30,26 @@
         <property name="maxInMemorySize" value="4096"/>
     </bean>
 
+    <bean id="urlMapping"
+          class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="order">
+            <value>2</value>
+        </property>
+    </bean>
+    <bean name="/login.do"
+          class="com.ablesky.migration.controller.account.LoginController">
+        <property name="accountService">
+            <ref bean="accountService" />
+        </property>
+        <property name="organizationService">
+            <ref bean="organizationService" />
+        </property>
+        <property name="orgHomePageService">
+            <ref bean="orgHomePageService"/>
+        </property>
+        <property name="orgAPPConfigService">
+            <ref bean="orgAPPConfigService"/>
+        </property>
+    </bean>
+
 </beans>
