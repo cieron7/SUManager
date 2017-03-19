@@ -4,21 +4,23 @@ import java.util.Date;
 
 /**
  * Created by Nathan on 2017/3/14.
+ *
+ *  评论
  */
 public class Comment {
-    private long id;
+    private long id;    //id
 
-    private long activityId;
+    private long activityId;    //活动id
 
-    private long accountId;
+    private long accountId;     //用户id
 
-    private String content;
+    private String content;     //评论内容
 
-    private int status;
+    private int status;     //状态
 
-    private long parentId;
+    private long parentId;      //评论id
 
-    private Date createTime;
+    private Date createTime;    //创建时间
 
     public long getId() {
         return id;

@@ -7,21 +7,21 @@ import java.util.Date;
  */
 public class Department {
 
-    private long id;
+    private long id;    //id
 
-    private String name;
+    private String name;    //部门名称
 
-    private String description;
+    private String description;     //部门描述
 
-    private String photoUrl;
+    private String photoUrl;       //图片地址
 
-    private String goal;
+    private String goal;        //部门目标
 
-    private String function;
+    private String function;    //部门职责
 
-    private long orgId;
+    private long orgId;         //组织(院系)id
 
-    private Date createTime;
+    private Date createTime;    //创建时间
 
     public long getId() {
         return id;

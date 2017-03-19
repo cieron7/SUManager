@@ -7,19 +7,19 @@ import java.util.Date;
  */
 public class DepartmentMember {
 
-    private long id;
+    private long id;  //id
 
-    private long accountId;
+    private long accountId;     //用户id
 
-    private long departmentId;
+    private long departmentId;      //部门id
 
-    private int role;
+    private int role;       //规则
 
-    private String remark;
+    private String remark;      //评价
 
-    private int status;
+    private int status;     //状态
 
-    private Date createTime;
+    private Date createTime;    //创建时间
 
     public long getId() {
         return id;

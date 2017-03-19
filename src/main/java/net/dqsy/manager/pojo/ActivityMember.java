@@ -7,15 +7,15 @@ import java.util.Date;
  */
 public class ActivityMember {
 
-    private long id;
+    private long id;    //id
 
-    private long accountId;
+    private long accountId;     //用户id
 
-    private int status;
+    private int status;     //状态
 
-    private long activityId;
+    private long activityId;    //活动id
 
-    private Date createTime;
+    private Date createTime;    //创建时间
 
     public long getId() {
         return id;

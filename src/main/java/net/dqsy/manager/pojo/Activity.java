@@ -7,23 +7,23 @@ import java.util.Date;
  */
 public class Activity {
 
-    private long id;
+    private long id;    //id
 
-    private String title;
+    private String title;   //活动名称
 
-    private String subTitle;
+    private String subTitle;    //小标题
 
-    private String context;
+    private String context;     //活动内容
 
-    private int limitNum;
+    private int limitNum;       //分类名称
 
-    private Date startTime;
+    private Date startTime;     //开始时间
 
-    private Date endTime;
+    private Date endTime;       //结束时间
 
-    private long apartmentId;
+    private long apartmentId;   //活动id
 
-    private long departmentMemberId;
+    private long departmentMemberId;    //部门成员id
 
     public long getId() {
         return id;

@@ -3,20 +3,20 @@ package net.dqsy.manager.pojo;
 import java.util.Date;
 
 /**
- * 机构
+ * 机构(院系)
  * Created by Nathan on 2017/3/14.
  */
 public class Organizaton {
 
-    private long id;
+    private long id;    //id
 
-    private long accountId;
+    private long accountId;     //用户id
 
-    private String logo;
+    private String logo;        //logo地址
 
-    private String name;
+    private String name;        //机构(院系)名称
 
-    private Date createTime;
+    private Date createTime;        //创建时间
 
 
     public long getId() {

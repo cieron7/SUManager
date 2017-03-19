@@ -9,35 +9,35 @@ import java.util.Locale;
  */
 public class Account implements Serializable {
 
-    private long id;
+    private long id; //学生学号
 
-    private String username;
+    private String username;  //学生姓名
 
-    private String password;
+    private String password; //学生密码
 
-    private int sex;
+    private int sex; //性别
 
-    private String email;
+    private String email; //邮件地址
 
-    private String screenNmae;
+    private String screenName;  //昵称
 
-    private Locale locale;
+    private Locale locale;  //住址
 
-    private boolean enabled;
+    private boolean enabled;    //状态
 
-    private boolean acivated;
+    private boolean activated;   //激活
 
-    private Date registerTime;
+    private Date registerTime;  //注册时间
 
-    private Date lastloginTime;
+    private Date lastloginTime; //最后登录时间
 
-    private String registerIp;
+    private String registerIp;  //注册IP地址
 
-    private String mobile;
+    private String mobile;  //电话
 
-    private String salt;
+    private String salt;    //盐
 
-    private Date createTime;
+    private Date createTime;    //创建时间
 
     public long getId() {
         return id;
@@ -79,12 +79,12 @@ public class Account implements Serializable {
         this.email = email;
     }
 
-    public String getScreenNmae() {
-        return screenNmae;
+    public String getScreenName() {
+        return screenName;
     }
 
-    public void setScreenNmae(String screenNmae) {
-        this.screenNmae = screenNmae;
+    public void setScreenName(String screenName) {
+        this.screenName = screenName;
     }
 
     public Locale getLocale() {
@@ -103,12 +103,12 @@ public class Account implements Serializable {
         this.enabled = enabled;
     }
 
-    public boolean isAcivated() {
-        return acivated;
+    public boolean isActivated() {
+        return activated;
     }
 
-    public void setAcivated(boolean acivated) {
-        this.acivated = acivated;
+    public void setActivated(boolean activated) {
+        this.activated = activated;
     }
 
     public Date getRegisterTime() {
@@ -159,3 +159,5 @@ public class Account implements Serializable {
         this.createTime = createTime;
     }
 }
+
+
