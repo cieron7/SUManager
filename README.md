@@ -1,10 +1,10 @@
 # SUManager
 学生会管理系统 v1.0
 
-###windows 本地host修改 
-127.0.0.1 su.dqsy.net<br>
-127.0.0.1 img.dqsy.net<br>
-###nginx 配置
+### windows 本地host修改 
+127.0.0.1 su.dqsy.net <br>
+127.0.0.1 img.dqsy.net <br>
+### nginx 配置
     worker_processes  1;
     events {
         worker_connections  1024;
