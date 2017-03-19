@@ -26,8 +26,8 @@ import java.util.Set;
 @Service
 public class RedisUtil {
 
-    protected static Logger logger = LoggerFactory.getLogger(RedisUtil.class);
-    private static InputStream in = null;
+    public static Logger logger = LoggerFactory.getLogger(RedisUtil.class);
+    public static InputStream in = null;
     public static Properties config = new Properties();
 
     /**
