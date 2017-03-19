@@ -3,7 +3,6 @@ package net.dqsy.manager.controller;
 import net.dqsy.manager.pojo.Account;
 import net.dqsy.manager.service.AccountService;
 import net.dqsy.manager.web.util.ParamUtils;
-import net.dqsy.manager.web.util.RedisUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -31,15 +29,7 @@ public class LoginController {
     //登录界面
     @RequestMapping("/login")
     public String  login(){
-
-
-
-        logger.info("-------userName:------------Pwd:---------");
-        String test = RedisUtil.get("test");
-        RedisUtil.set("mygod","dfd", -1);
-        System.out.println(test);
         return "page/login";
-
     }
 
     //登录功能

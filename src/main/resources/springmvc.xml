@@ -15,7 +15,8 @@
     </context:component-scan>
 
     <!-- 启动Springmvc注解驱动 -->
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven />
+
     <!-- location:资源所在的文件夹， mapping：请求的url格式 -->
     <mvc:resources location="/css/" mapping="/css/**"/>
     <mvc:resources location="/js/" mapping="/js/**"/>
@@ -32,10 +33,10 @@
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <!-- 设定默认编码 -->
-        <property name="uploadTempDir" value="/WEB-INF/temp" />
-        <property name="defaultEncoding" value="UTF-8" />
+        <property name="uploadTempDir" value="/WEB-INF/temp"/>
+        <property name="defaultEncoding" value="UTF-8"/>
         <!-- 设定文件上传的最大值50MB，50*1024*1024 -->
-        <property name="maxUploadSize" value="52428800" />
+        <property name="maxUploadSize" value="52428800"/>
     </bean>
 
     <bean id="urlMapping"
@@ -46,4 +47,6 @@
     </bean>
     <!--全局异常处理器-->
     <!-- <bean class="com.hongxinguoji.manager.common.exception.WebHandlerExceptionResolver" /> -->
+
+    <bean id="upload" class="net.dqsy.manager.common.upload.FileUpload"/>
 </beans>

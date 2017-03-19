@@ -11,6 +11,12 @@
     <title>管理系统</title>
 </head>
 <body>
-aaaaaaaaaaaaaaaaaaaaaaaaaa
+
+1111
+<form id="addSeal" name="file" action="/file/upload" enctype="multipart/form-data" method="post">
+    <input type="file" name="file" />
+
+    <input type="submit" value="onSubmit提交" />
+</form>
 </body>
 </html>

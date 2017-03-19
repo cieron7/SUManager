@@ -1,8 +1,5 @@
 package net.dqsy.manager.web.util;
 
-import com.alibaba.fastjson.JSONObject;
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.collections.SetUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -16,8 +13,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -194,47 +189,6 @@ public class RedisUtil {
         return ret;
     }
 
-    /**
-     * 获取缓存并转换成目标类型
-     *
-     * @param key
-     * @param clazz
-     * @return
-     */
-    public static <T> T get(String key, Class<T> clazz) {
-        String jsonStr = get(key);
-        try {
-            return JSONObject.parseObject(jsonStr, clazz);
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    public static <T> List<T> mgetObject(Class<T> clazz, String... keys) {
-        List<String> list = mget(keys);
-        List<T> ret = new ArrayList<T>(list.size());
-        for (String item : list) {
-            try {
-                ret.add(JSONObject.parseObject(item, clazz));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return ret;
-    }
-
-    public static <T> Map<String, T> mgetObjectToMap(Class<T> clazz, String... keys) {
-        Map<String, T> map = new HashMap<String, T>();
-        List<T> data = mgetObject(clazz, keys);
-        for (int i = 0; i < keys.length; i++) {
-            String key = keys[i];
-            T value = data.get(i);
-            if (value != null) {
-                map.put(key, value);
-            }
-        }
-        return map;
-    }
 
     public static List<String> mget(String... keys) {
         Jedis r = null;
@@ -457,77 +411,8 @@ public class RedisUtil {
         }
     }
 
-    public static  <T> Long sadd(String key, T... members) {
-        if (members == null || members.length == 0) {
-            return 0L;
-        }
 
-        Jedis w = null;
-        try {
-            w = getJedisModel();
 
-            List<String> list = new ArrayList<String>(members.length);
-            for (T t : members) {
-                list.add(JSONObject.toJSONString(t));
-            }
-            return w.sadd(key, list.toArray(new String[0]));
-        } catch (Exception e) {
-            logger.error(null, e);
-            pool.returnBrokenResource(w);
-            return null;
-        } finally {
-            pool.returnResource(w);
-        }
-    }
-
-    /**
-     * 获取集合所有成员
-     *
-     * @param key
-     * @return
-     */
-    public static Set<String> smembers(String key) {
-        Jedis r = null;
-        Set<String> ret = null;
-
-        try {
-            r = getJedisModel();
-            ret = r.smembers(key);
-        } catch (Exception e) {
-            logger.error(null, e);
-            pool.returnBrokenResource(r);
-        } finally {
-            pool.returnResource(r);
-        }
-        return ret;
-    }
-
-    @SuppressWarnings("unchecked")
-    public static <T> Set<T> smembers(String key, Class<T> clazz) {
-        Jedis r = null;
-        Set<String> list = null;
-
-        try {
-            r = getJedisModel();
-            list = r.smembers(key);
-        } catch (Exception e) {
-            logger.error(null, e);
-            pool.returnBrokenResource(r);
-        } finally {
-            pool.returnResource(r);
-        }
-
-        if (CollectionUtils.isNotEmpty(list)) {
-            Set<T> ret = new HashSet<T>(list.size());
-            for (String item : list) {
-                T t = JSONObject.parseObject(item, clazz);
-                ret.add(t);
-            }
-            return ret;
-        } else {
-            return SetUtils.EMPTY_SET;
-        }
-    }
 
     /**
      * 删除集合中的成员
