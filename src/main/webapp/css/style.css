@@ -15,9 +15,13 @@ body {
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
+
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
   margin-bottom: 30px;
+}
+.form-signin-heading-1 {
+  font-size: 12px;
 }
 .form-signin .checkbox {
   font-weight: normal;

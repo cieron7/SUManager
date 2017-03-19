@@ -18,9 +18,10 @@
 </head>
 <body>
 <div class="wrapper">
-    <form class="form-signin" action="" method="post">
-        <h2 class="form-signin-heading">欢迎使用</h2>
-        <input type="text" class="form-control" name="username" placeholder="用户名" required="" autofocus="" />
+    <form class="form-signin" action="/Login/logon.action" method="post">
+        <h2 class="form-signin-heading">欢迎使用 </h2>
+        <h5 class="form-signin-heading-1">${msg} </h5>
+        <input type="text" class="form-control" name="username" placeholder="用户名" required="" autofocus=" "/>
         <input type="password" class="form-control" name="password" placeholder="密码" required=""/>
         <label class="checkbox">
             <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> 记住我
