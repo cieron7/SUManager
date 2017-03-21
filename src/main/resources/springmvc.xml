@@ -10,21 +10,43 @@
 		http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
     <!-- 配置扫描器，管理所有controller -->
-    <context:component-scan base-package="net.dqsy.manager.controller"/>
+    <context:component-scan base-package="net.dqsy.manager.controller">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
 
+    <!-- 启动Springmvc注解驱动 -->
+    <mvc:annotation-driven />
 
-
-
-    <!-- 配置处理器映射器、适配器、视图解析器 -->
-    <mvc:annotation-driven/>
+    <!-- location:资源所在的文件夹， mapping：请求的url格式 -->
+    <mvc:resources location="/css/" mapping="/css/**"/>
+    <mvc:resources location="/js/" mapping="/js/**"/>
+    <mvc:resources location="/images/" mapping="/images/**"/>
+    <mvc:resources location="/fonts/" mapping="/fonts/**"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <!-- 加载所有的配置文件 -->
-    <import resource="classpath:spring/*.xml"/>
 
+    <!-- 配置多媒体解析器 -->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 设定默认编码 -->
+        <property name="uploadTempDir" value="/WEB-INF/temp"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+        <!-- 设定文件上传的最大值50MB，50*1024*1024 -->
+        <property name="maxUploadSize" value="52428800"/>
+    </bean>
 
+    <bean id="urlMapping"
+          class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="order">
+            <value>2</value>
+        </property>
+    </bean>
+    <!--全局异常处理器-->
+    <!-- <bean class="com.hongxinguoji.manager.common.exception.WebHandlerExceptionResolver" /> -->
+
+    <bean id="upload" class="net.dqsy.manager.common.upload.FileUpload"/>
 </beans>
