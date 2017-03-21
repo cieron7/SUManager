@@ -13,7 +13,15 @@
     </context:component-scan>
 
     <!-- 加载配置文件 -->
-    <context:property-placeholder location="classpath:*.properties"/>
+    <bean class="net.dqsy.manager.components.SUSpringProperties">
+        <property name="locations">
+            <list>
+                <value>classpath:*.properties</value>
+            </list>
+        </property>
+        <property name="fileEncoding" value="utf-8"/>
+    </bean>
+
 
     <!-- 数据库连接池 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
@@ -66,5 +74,9 @@
                      pointcut="execution(* net.dqsy.manager.service.*.*(..))"/>
     </aop:config>
 
+
+    <bean id="beanFactoryUtil"
+          class="net.dqsy.manager.web.util.BeanFactoryUtil">
+    </bean>
 
 </beans>
