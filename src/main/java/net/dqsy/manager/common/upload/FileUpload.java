@@ -1,9 +1,9 @@
 package net.dqsy.manager.common.upload;
 
+import net.dqsy.manager.web.util.ResultUtil;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,8 +21,7 @@ import java.util.UUID;
 public class FileUpload {
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    @ResponseBody
-    public Object upload(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void upload(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         String filePath = "c:/uploadfile";
         String fileName = file.getOriginalFilename();
@@ -39,6 +38,6 @@ public class FileUpload {
         }
         Map result = new HashMap<String, Object>();
         result.put("url", fileName);
-        return result;
+        ResultUtil.success(result, response);
     }
 }
