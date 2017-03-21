@@ -67,15 +67,7 @@ public class ResultUtil {
         } catch (UnsupportedEncodingException e1) {
             e1.printStackTrace();
         }
-        response.setContentType("text/html;charset=utf-8");
-        try {
-            OutputStream out = response.getOutputStream();
-            out.write(bout);
-            out.flush();
-            out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        outputData(bout, response);
     }
 
     /**
@@ -97,6 +89,10 @@ public class ResultUtil {
         } catch (UnsupportedEncodingException e1) {
             e1.printStackTrace();
         }
+        outputData(bout, response);
+    }
+
+    private static void outputData(byte[] bout, HttpServletResponse response) {
         response.setContentType("text/html;charset=utf-8");
         try {
             OutputStream out = response.getOutputStream();
@@ -106,7 +102,6 @@ public class ResultUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
     }
 
