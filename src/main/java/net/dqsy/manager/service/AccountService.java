@@ -1,7 +1,6 @@
 package net.dqsy.manager.service;
 
 import net.dqsy.manager.pojo.Account;
-import org.springframework.stereotype.Service;
 
 /**
  * Created by CAI on 2017/3/19.

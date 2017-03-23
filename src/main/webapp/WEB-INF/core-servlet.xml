@@ -13,6 +13,8 @@
     <!-- 启动Springmvc注解驱动 -->
     <mvc:annotation-driven />
 
+
+
     <!-- location:资源所在的文件夹， mapping：请求的url格式 -->
     <mvc:resources location="/css/" mapping="/css/**"/>
     <mvc:resources location="/js/" mapping="/js/**"/>
@@ -45,4 +47,6 @@
     <!-- <bean class="com.hongxinguoji.manager.common.exception.WebHandlerExceptionResolver" /> -->
 
     <bean id="upload" class="net.dqsy.manager.common.upload.FileUpload"/>
+
+
 </beans>

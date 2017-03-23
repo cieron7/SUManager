@@ -18,7 +18,7 @@
 </head>
 <body>
 <div class="wrapper">
-    <form class="form-signin" action="/Login/logon.action" method="post">
+    <form class="form-signin" action="/logon.action" method="post">
         <h2 class="form-signin-heading">欢迎使用 </h2>
         <h5 class="form-signin-heading-1">${msg} </h5>
         <input type="text" class="form-control" name="username" placeholder="用户名" required="" autofocus=" "/>

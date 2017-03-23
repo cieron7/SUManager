@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  * Created by CAI on 2017/3/12.
  */
 @Controller
-@RequestMapping("/Login")
+@RequestMapping("/")
 public class LoginController {
 
     public static Logger logger = LoggerFactory.getLogger(LoginController.class);
@@ -35,17 +36,17 @@ public class LoginController {
     //登录功能
     @RequestMapping("/logon")
     public String logon(HttpServletRequest request, HttpServletResponse response , Model model){
-
+        //获取前台界面的username和password
         String username = ParamUtils.getParameter(request, "username", "");
         String password = ParamUtils.getParameter(request, "password", "");
-
         Account account = accountService.logon(username.trim(), password);
         if(account == null) {
             model.addAttribute(username);
             model.addAttribute("msg","用户名或密码错误");
-            return "page/login";
+            return "forward:/login";
         }
-
+        //将用户护具存入session
+        request.getSession().setAttribute("username",username);
         return "page/manager";
     }
 }
