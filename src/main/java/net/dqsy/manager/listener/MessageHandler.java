@@ -16,5 +16,6 @@ public class MessageHandler implements ApplicationListener<ContextRefreshedEvent
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         logger.info("---------------init-------------------");
 
+
     }
 }
