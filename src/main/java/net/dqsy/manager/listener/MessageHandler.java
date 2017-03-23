@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 public class MessageHandler implements ApplicationListener<ContextRefreshedEvent>{
     public static Logger logger = LoggerFactory.getLogger(LoginController.class);
 
-
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         logger.info("---------------init-------------------");
