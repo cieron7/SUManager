@@ -309,7 +309,7 @@
                 <artifactId>tomcat-maven-plugin</artifactId>
                 <version>1.1</version>
                 <configuration>
-                    <url>http://localhost:8080/manager</url>
+                    <url>http://localhost:9092/manager</url>
                     <username>tomcat</username>
                     <password>123456</password>
                     <path>/sumanager</path>
