@@ -10,12 +10,7 @@ import redis.clients.jedis.ShardedJedisPool;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * RedisUtil 
- * 
- * @author yjY
- * @version 1.0.0 RedisUtil.java 2017-3-2 下午1:43:08
- */
+
 public class RedisUtil {
 	public static final Log log = LogFactory.getLog(RedisUtil.class.getName());
 	
