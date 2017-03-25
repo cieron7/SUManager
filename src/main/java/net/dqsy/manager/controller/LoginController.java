@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,12 +25,16 @@ public class LoginController {
 
     @Autowired
     private AccountService accountService;
-
-    //登录界面
-    @RequestMapping("/login")
-    public String  login(){
-        return "page/login";
+    @RequestMapping("/")
+    public String index(){
+        // TODO: 2017/3/25 判断是否登陆 可以在拦截器中配置
+        if(true){
+            return "redirect:login.html";
+        }else{
+            return "redirect:index.html";
+        }
     }
+
 
     //登录功能
     @RequestMapping("/logon")
