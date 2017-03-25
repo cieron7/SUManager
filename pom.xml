@@ -280,7 +280,7 @@
                 <version>2.2</version>
                 <configuration>
                     <server>test</server>
-                    <url><url>http://localhost:8081/manager/text</url></url>
+                    <url>http://localhost:8081/manager/text</url>
                     <path>/</path>
                 </configuration>
             </plugin>
