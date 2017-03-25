@@ -279,8 +279,8 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    <url>http://localhost:8081/manager/html</url>
-                    <server>test</server>
+                    <port>9000</port>
+                    <path>/</path>
                 </configuration>
             </plugin>
 
