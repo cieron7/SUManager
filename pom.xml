@@ -13,22 +13,6 @@
         <springframework.version>4.3.5.RELEASE</springframework.version>
     </properties>
 
-    <repositories>
-        <repository>
-            <id>people.apache.snapshots</id>
-            <url>
-                http://repository.apache.org/content/groups/snapshots-group/
-            </url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-
-    </repositories>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>
