@@ -279,7 +279,8 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    <port>9000</port>
+                    <server>test</server>
+                    <url><url>http://localhost:8081/manager/text</url></url>
                     <path>/</path>
                 </configuration>
             </plugin>
