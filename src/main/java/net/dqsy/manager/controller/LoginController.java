@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Created by CAI on 2017/3/12.
- */
+
 @Controller
 @RequestMapping("/")
 public class LoginController {
@@ -54,11 +52,13 @@ public class LoginController {
             //return "forward:/login";
             return "redirect:login.html";
         }
+
+        model.addAttribute("currentUser", account);
         //将用户护具存入session
         //request.getSession().setAttribute("username",username);
         String ip = IpUtil.getIpStr(request);
         String uri = request.getRequestURI();
         logger.info("user: {}, ip: {}", account.getUsername(), ip);
-        return "redirect:index.html";
+        return "main";
     }
 }

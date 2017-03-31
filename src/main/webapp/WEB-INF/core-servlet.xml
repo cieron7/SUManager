@@ -23,7 +23,7 @@
     <mvc:resources location="/html/" mapping="/**"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/"/>
+        <property name="prefix" value="/WEB-INF/page/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
 

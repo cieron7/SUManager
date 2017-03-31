@@ -1,0 +1,49 @@
+/*自定义样式*/
+.header{
+	height: 40px;
+	width: 100%;
+	background-color: #333;
+	position:fixed;
+	top: 0px;
+}
+.home{
+	margin: 0 auto;
+	width: 1000px;
+	height: auto;
+	/*background-color: red;*/
+	margin-top: 40px;
+}
+
+.home .bannerbox{
+	height: 1000px;
+	/*background-color: #33FFFF;*/
+}
+.home .main .think{
+	height: 100px;
+	margin-top: 10px;
+	background-color: #FF6666;
+}
+.home .main .content{
+	height: 10000px;
+	margin-top: 10px;
+	background-color: #FFFF99;
+	margin-bottom: 30px;
+}
+.footer{
+	height:30px;
+	position:fixed;
+	bottom:0px;
+	background-color: #FF6633;
+	width: 100%;
+}
+
+.text-center{
+	text-align: center;
+}
+.list-inline{
+	line-height: 30px;
+	padding-left: 0;
+	margin-left: -5px;
+	list-style: none;
+}
+

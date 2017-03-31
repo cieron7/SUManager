@@ -47,7 +47,7 @@ public class RedisConfig {
 			if (file.exists()) {
 				in = new FileInputStream(file);
 			} else {/** use default config */
-				in = RedisConfig.class.getClassLoader().getResourceAsStream("redis.properties");
+				in = RedisConfig.class.getClassLoader().getResourceAsStream("commonConfig.properties");
 			}
 			config.load(in);
 

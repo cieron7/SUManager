@@ -4,14 +4,34 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="net.dqsy.manager.mapper.AccountMapper">
 
-    <resultMap type="Account" id="accountMap">
-        <id property="id" column="id" />
-        <result property="username" column="username" />
-        <result property="password" column="password" />
-    </resultMap>
+    <!-- 字段(带主键) -->
+    <sql id="ziduan">
+        account.id,
+        account.username,
+        account.password,
+        account.sex,
+        account.email,
+        account.screename,
+        account.locale,
+        account.enabled,
+        account.activated,
+        account.registertime,
+        account.lastlogintime,
+        account.registerip,
+        account.mobile,
+        account.salt,
+        account.createtime
+    </sql>
 
     <!--根据用户名查询用户信息-->
-    <select id="getAccountByName" parameterType="String" resultMap="accountMap">
-        select username , password from account where username = #{username}
+    <select id="findAccountByNameAndPassword" resultType="net.dqsy.manager.pojo.Account">
+        select
+        <include refid="ziduan"/>
+        FROM
+        account
+        WHERE
+        account.username = #{userName}
+        and
+        account.password = #{userPwd}
     </select>
 </mapper>
