@@ -16,6 +16,7 @@
     <script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/jquery-ui-1.9.2.custom.min.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
 </head>
 <body>
 	<!-- header begin -->
@@ -28,34 +29,43 @@
 	<div class="home">
 		自定义最大容器
 		<!-- picture begin -->
-		<div id="myCarourel" class="banner">
-			<!-- 轮播（Carousel）指标 -->
-			<ol class="carousel-indicators">
-				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-				<li data-target="#myCarousel" data-slide-to="1"></li>
-				<li data-target="#myCarousel" data-slide-to="2"></li>
-			</ol>
-			<!-- 轮播（Carousel）项目 -->
-			<div class="carousel-inner">
-				<div class="item active">
-					<img src="/images/img01.jpg" alt="First slide">
-				</div>
-				<div class="item">
-					<img src="/images/img02.jpg" alt="Second slide">
-				</div>
-				<div class="item">
-					<img src="/images/img03.png" alt="Third slide">
-				</div>
+		<div id="myCarousel" class="container" style="width: 1000px;padding-right: 0px;padding-left: 0px">
+
+			<div id="carouselcontainter" class="carousel" style="color: #66afe9" align="center">
+				<!--<ol class="carousel-indicators">-->
+					<!--<li class ="active">1</li>-->
+					<!--<li>2</li>-->
+					<!--<li>3</li>-->
+				<!--</ol>-->
+				<div class="carousel-inner">
+					<div class="item active"><a href="##"><img src="/images/01.png"></a>
+						<!--<div class="carousel-caption">-->
+							<!--<h3>我的天啊</h3>-->
+							<!--<p>非常漂亮的谁谁谁</p>-->
+						<!--</div>-->
+					</div>
+					<div class="item"><a href="##"><img src="/images/02.png"></a></div>
+					<div class="item"><a href="##"><img src="/images/03.png"></a></div>
+
+                </div>
+                <a id="left" class="left carousel-control" href="#carouselcontainter" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+
+                <a id="right" class="right carousel-control" href="#carouselcontainter" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+
 			</div>
+
+
 		</div>
-		<!-- picture end -->
-		<!-- main begin -->
 		<div class="main">
 			<div class="think">这一刻的想法.</div>
 			<div class="content">这是主要内容啦</div>
 		</div>
 		<!-- main end -->
-		
+
 
 	</div>
 	<!-- 自定义容器 end -->
@@ -66,6 +76,6 @@
 			 <li>京公网安备XXXXXXXXXXXXXXXXXX</li>
 		</ul>
 	</div>
-	<!-- footer end -->
+	 <!--footer end -->
 </body>
 </html>
