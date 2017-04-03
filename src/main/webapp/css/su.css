@@ -1,5 +1,5 @@
 自定义样式
-.header{
+.myHeader{
 	height: 40px;
 	width: 100%;
 	background-color: #333;
@@ -24,7 +24,7 @@
 	background-color: #FF6666;
 }
 .home .main .content{
-	height: 10000px;
+	height: 100px;
 	margin-top: 10px;
 	background-color: #FFFF99;
 	margin-bottom: 30px;

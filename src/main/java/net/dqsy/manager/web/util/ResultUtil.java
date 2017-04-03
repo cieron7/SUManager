@@ -92,7 +92,7 @@ public class ResultUtil {
         outputData(bout, response);
     }
 
-    private static void outputData(byte[] bout, HttpServletResponse response) {
+    public static void outputData(byte[] bout, HttpServletResponse response) {
         response.setContentType("text/html;charset=utf-8");
         try {
             OutputStream out = response.getOutputStream();

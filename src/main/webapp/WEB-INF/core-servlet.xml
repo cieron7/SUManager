@@ -11,9 +11,7 @@
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
     <!-- 启动Springmvc注解驱动 -->
-    <mvc:annotation-driven />
-
-
+    <mvc:annotation-driven/>
 
     <!-- location:资源所在的文件夹， mapping：请求的url格式 -->
     <mvc:resources location="/css/" mapping="/css/**"/>
@@ -38,16 +36,38 @@
         <property name="maxUploadSize" value="52428800"/>
     </bean>
 
+    <bean id="beanNameUrlMapping"
+          class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"
+          lazy-init="default" autowire="default">
+        <property name="order">
+            <value>1</value>
+        </property>
+    </bean>
     <bean id="urlMapping"
           class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="order">
             <value>2</value>
         </property>
     </bean>
-    <!--全局异常处理器-->
-    <!-- <bean class="com.hongxinguoji.manager.common.exception.WebHandlerExceptionResolver" /> -->
 
+    <bean id="methodNameResolver"
+          class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+        <property name="paramName">
+            <value>action</value>
+        </property>
+        <property name="defaultMethodName">
+            <value>config</value>
+        </property>
+    </bean>
+
+    <!--文件上传-->
     <bean id="upload" class="net.dqsy.manager.common.upload.FileUpload"/>
+
+    <bean name="/ueditController.do" class="net.dqsy.manager.controller.uedit.UeditController">
+        <property name="methodNameResolver">
+            <ref bean="methodNameResolver"/>
+        </property>
+    </bean>
 
 
 </beans>
