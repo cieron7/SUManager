@@ -1,48 +1,184 @@
-自定义样式
-.myHeader{
-	height: 40px;
-	width: 100%;
-	background-color: #333;
-	position:fixed;
-	top: 0px;
-}
-.home{
-	margin: 0 auto;
-	width: 1000px;
-	height: auto;
-	/*background-color: red;*/
-	margin-top: 40px;
+/*自定义样式*/
+.header {
+    height: 40px;
+    width: 100%;
+    background-color: #333;
+    position: fixed;
+    top: 0px;
+    z-index: 9999;
 }
 
-.home .bannerbox{
-	height: 1000px;
-	/*background-color: #33FFFF;*/
-}
-.home .main .think{
-	height: 100px;
-	margin-top: 10px;
-	background-color: #FF6666;
-}
-.home .main .content{
-	height: 100px;
-	margin-top: 10px;
-	background-color: #FFFF99;
-	margin-bottom: 30px;
-}
-.footer{
-	height:30px;
-	position:fixed;
-	bottom:0px;
-	background-color: #FF6633;
-	width: 100%;
+.home {
+    margin: 0px auto;
+    width: 1000px;
+    height: auto;
+    background-color: red;
+    margin-top: 40px;
 }
 
-.text-center{
-	text-align: center;
+.main {
+    height: 200px;
 }
-.list-inline{
-	line-height: 30px;
-	padding-left: 0;
-	margin-left: -5px;
-	list-style: none;
+
+.home .main .think {
+    height: 100px;
+    margin-top: 10px;
+    background-color: #FF6666;
+}
+
+.home .content {
+    /*height: 500px;*/
+    /*margin-top: 500px;*/
+    background-color: #d0e9c6;
+
+}
+
+.home .content span {
+    display: inline-block;
+    font-size: 20px;
+}
+
+.outlinedB {
+    color: hsl(10, 100%, 40%);
+    text-shadow: 0 0 2px currentColor,
+    0 -1px 1px hsl(40, 100%, 80%),
+    -1px -1px 1px hsl(10, 100%, 40%),
+    1px -1px 1px hsl(10, 100%, 40%),
+    1px 0 1px hsl(10, 100%, 40%),
+    0 -1px 1px hsl(10, 100%, 40%),
+    0 1px 1px hsl(10, 100%, 20%),
+    1px 1px 1px hsl(10, 100%, 40%),
+    -1px 1px 1px hsl(10, 100%, 40%),
+    -2px -2px 1px hsl(10, 100%, 20%),
+    -1px -2px 1px hsl(10, 100%, 20%),
+    0 -2px 1px hsl(10, 100%, 20%),
+    1px -2px 1px hsl(10, 100%, 20%),
+    2px -2px 1px hsl(10, 100%, 20%),
+    2px -1px 1px hsl(10, 100%, 20%),
+    2px 0 1px hsl(10, 100%, 20%),
+    2px 1px 1px hsl(10, 100%, 20%),
+    2px 2px 1px hsl(10, 100%, 20%),
+    1px 2px 1px hsl(10, 100%, 20%),
+    0 2px 3px hsl(10, 100%, 20%),
+    -1px 2px 1px hsl(10, 100%, 20%),
+    -2px 2px 1px hsl(10, 100%, 20%),
+    -2px 1px 1px hsl(10, 100%, 20%),
+    -2px 0 1px hsl(10, 100%, 20%),
+    -2px -1px 1px hsl(10, 100%, 20%)
+}
+
+.outlinedB:before {
+    content: '校园学工动态';
+    top: -3px;
+    color: transparent;
+    text-shadow: 0 1px 2px #ff6;
+    opacity: .4
+}
+
+.outlinedB:after {
+    content: '校园学工动态';
+    top: .3em;
+    color: transparent;
+    text-shadow: 0 0 6px rgba(0, 0, 0, .6), 0 0 8px rgba(0, 0, 0, .8);
+    transform: scaleY(.5);
+    z-index: -1
+}
+
+.home .content-area-display {
+    width: 950px;
+    background-color: #a8c9e0;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+}
+
+.home .content-area-inline {
+    width: 800px;
+    /*height: 122px;*/
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #6dbfff;
+    padding-bottom: 15px;
+    /*position: relative;*/
+}
+
+.headImg {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    border-radius: 100px
+}
+
+.home .content-info {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 15px;
+    min-height: 5px;
+    background-color: #9cb945;
+    position: relative;
+}
+
+.home .content-icon{
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.comment-headImg {
+    width: 35px;
+    height: 35px;
+    margin-left: 50px;
+    display: inline-block;
+    border-radius: 100px
+}
+
+.comment-area {
+    /*BORDER-RIGHT: #999999 1px solid;*/
+    /*PADDING-RIGHT: 3px;*/
+    /*BORDER-TOP: #999999 1px solid;*/
+    /*OVERFLOW-Y: auto;*/
+    /*PADDING-LEFT: 3px;*/
+    /*FONT-WEIGHT: normal;*/
+    /*FONT-SIZE: 12px;*/
+    /*OVERFLOW-X: hidden;*/
+    /*PADDING-BOTTOM: 3px;*/
+    /*BORDER-LEFT: #999999 1px solid;*/
+    /*WIDTH: 380px;*/
+    /*COLOR: #000066;*/
+    /*WORD-BREAK: break-all;*/
+    /*PADDING-TOP: 3px;*/
+    /*BORDER-BOTTOM: #999999 1px solid;*/
+    /*FONT-STYLE: normal;*/
+    /*FONT-FAMILY: SIMSUN;*/
+    height: 36px;
+    border: #d0e9c6 2px solid;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+
+}
+
+.footer {
+    height: 30px;
+    position: fixed;
+    bottom: 0px;
+    background-color: #FF6633;
+    width: 100%;
+    z-index: 9999;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.list-inline {
+    line-height: 30px;
+    padding-left: 0;
+    margin-left: -5px;
+    list-style: none;
+}
+.submitComment {
+    margin-top: 5px;
+    margin-left: 5px;
+    display: none;
 }

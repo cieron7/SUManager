@@ -1,12 +1,6 @@
 body {
   background-color: #f7f7f7;
 }
-
-.wrapper {
-  margin-top: 80px;
-  margin-bottom: 80px;
-}
-
 .form-signin {
   max-width: 380px;
   padding: 15px 35px 45px;
