@@ -55,15 +55,18 @@
         <property name="paramName">
             <value>action</value>
         </property>
-        <property name="defaultMethodName">
-            <value>config</value>
-        </property>
     </bean>
 
     <!--文件上传-->
     <bean id="upload" class="net.dqsy.manager.common.upload.FileUpload"/>
 
     <bean name="/ueditController.do" class="net.dqsy.manager.controller.uedit.UeditController">
+        <property name="methodNameResolver">
+            <ref bean="methodNameResolver"/>
+        </property>
+    </bean>
+
+    <bean name="/organizationRedirectController.do" class="net.dqsy.manager.controller.OrganizationRedirectController">
         <property name="methodNameResolver">
             <ref bean="methodNameResolver"/>
         </property>

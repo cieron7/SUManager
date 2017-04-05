@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>登陆</title>
+    <title>学生会信息管理平台</title>
     <link rel='stylesheet prefetch' href='/css/bootstrap.min.css'>
 
     <link rel="stylesheet" href="/css/style.css">
