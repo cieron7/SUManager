@@ -6,7 +6,7 @@ import java.util.Date;
  * 机构(院系)
  * Created by Nathan on 2017/3/14.
  */
-public class Organizaton {
+public class Organization {
 
     private long id;    //id
 

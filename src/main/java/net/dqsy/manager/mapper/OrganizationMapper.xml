@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.dqsy.manager.mapper.OrganizationMapper">
+
+    <select id="findOrganizationByAccountId" parameterType="long" resultType="net.dqsy.manager.pojo.Organization">
+        SELECT * FROM organization WHERE organization.account_id = #{accountId}
+    </select>
+</mapper>
