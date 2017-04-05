@@ -17,29 +17,17 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @Controller
-@RequestMapping("/")
-public class LoginController {
-
-    public static Logger logger = LoggerFactory.getLogger(LoginController.class);
-
+@RequestMapping("")
+public class IndexRedirectController {
 
     @Autowired
     private AccountService accountService;
 
-    @RequestMapping("/")
-    public String index() {
-        // TODO: 2017/3/25 判断是否登陆 可以在拦截器中配置
-        if (true) {
-            return "redirect:login.html";
-        } else {
-            return "redirect:index.html";
-        }
-    }
+    public static Logger logger = LoggerFactory.getLogger(IndexRedirectController.class);
 
-
-    //登录功能
-    @RequestMapping("/signin")
+    @RequestMapping("/login")
     public String logon(HttpServletRequest request, HttpServletResponse response, Model model) {
+
         //获取前台界面的username和password
         String username = ParamUtils.getParameter(request, "username", "");
         String password = ParamUtils.getParameter(request, "password", "");
@@ -47,18 +35,24 @@ public class LoginController {
         password = MD5Util.getMD5(password.getBytes());
         Account account = accountService.logon(username.trim(), password);
         if (account == null) {
-            //model.addAttribute(username);
-            //model.addAttribute("msg","用户名或密码错误");
-            //return "forward:/login";
-            return "redirect:login.html";
+            return "redirect:/index";
+        }
+        //将用户护具存入session
+        request.getSession().setAttribute("currentAccount", account);
+        String ip = IpUtil.getIpStr(request);
+        logger.info("user: {}, ip: {}", account.getUsername(), ip);
+        return "redirect:/index";
+    }
+
+    @RequestMapping(value = {"index", ""})
+    public String indexPage(HttpServletRequest request, HttpServletResponse response) {
+        Account account = (Account) request.getSession().getAttribute("currentAccount");
+        if(account == null){
+            return "login";
+        }else{
+            return "index";
         }
 
-        model.addAttribute("currentUser", account);
-        //将用户护具存入session
-        //request.getSession().setAttribute("username",username);
-        String ip = IpUtil.getIpStr(request);
-        String uri = request.getRequestURI();
-        logger.info("user: {}, ip: {}", account.getUsername(), ip);
-        return "main";
     }
+
 }
