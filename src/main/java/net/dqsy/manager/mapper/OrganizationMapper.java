@@ -7,4 +7,8 @@ import org.apache.ibatis.annotations.Param;
 public interface OrganizationMapper {
 
     Organization findOrganizationByAccountId(@Param("accountId") long accountId);
+
+    Organization findById(@Param("orgId") long orgId);
+
+    void updateOrganization(@Param("organization") Organization organization);
 }

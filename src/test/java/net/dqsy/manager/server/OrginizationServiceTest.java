@@ -17,5 +17,19 @@ public class OrginizationServiceTest extends BaseTest{
         Organization organization = organizationService.findOrganizationByAccountId(201204160110L);
         logger.info(organization.getName());
     }
+    @Test
+    public void findByIdTest(){
+        Organization organization = organizationService.findById(1L);
+        logger.info(organization.getName());
+    }
+
+    @Test
+    public  void updateOrganizationTest(){
+        Organization organization = new Organization();
+        organization.setId(1L);
+        organization.setName("计算机");
+        organization.setLogo("没有啊");
+        organizationService.updateOrganization(organization);
+    }
 
 }

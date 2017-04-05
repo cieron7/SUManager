@@ -7,4 +7,7 @@ public interface IOrganizationService {
 
     Organization findOrganizationByAccountId(long accountId);
 
+    Organization findById(long orgId);
+
+    void updateOrganization(Organization organization);
 }

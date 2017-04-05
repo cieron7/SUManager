@@ -7,4 +7,15 @@
     <select id="findOrganizationByAccountId" parameterType="long" resultType="net.dqsy.manager.pojo.Organization">
         SELECT * FROM organization WHERE organization.account_id = #{accountId}
     </select>
+
+    <select id="findById" parameterType="long" resultType="net.dqsy.manager.pojo.Organization">
+        SELECT * FROM organization WHERE organization.id = #{orgId}
+    </select>
+
+    <select id="updateOrganization">
+    UPDATE  organization
+    SET organization.`name` = #{organization.name},
+     organization.`logo` = #{organization.logo}
+     WHERE organization.id = #{organization.id}
+    </select>
 </mapper>
