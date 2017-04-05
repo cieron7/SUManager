@@ -39,7 +39,7 @@ public class FileUpload {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Map<String, Object> result = new HashMap<>();
+        Map<String, Object> result = new HashMap<String, Object>();
         result.put("url", fileName);
         ResultUtil.success(result, response);
     }
