@@ -10,7 +10,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand hidden-sm" href="/" onclick="_hmt.push(['_trackEvent', 'navbar', 'click', 'navbar-首页'])">大庆师范学院学生会信息管理平台</a>
+      <a class="navbar-brand hidden-sm" href="/" onclick="_hmt.push(['_trackEvent', 'navbar', 'click', 'navbar-首页'])">学生会信息管理平台</a>
     </div>
     <div class="navbar-collapse collapse" role="navigation" style="float: right">
       <ul class="nav navbar-nav">

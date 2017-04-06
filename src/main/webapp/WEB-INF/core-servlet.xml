@@ -70,6 +70,10 @@
         <property name="methodNameResolver">
             <ref bean="methodNameResolver"/>
         </property>
+
+        <property name="organizationService">
+            <ref bean="organizationServiceImpl"/>
+        </property>
     </bean>
 
 
