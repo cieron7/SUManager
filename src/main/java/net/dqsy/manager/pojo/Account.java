@@ -9,6 +9,11 @@ import java.util.Locale;
  */
 public class Account implements Serializable {
 
+    public static final String ACCOUNT_ADMIN = "admin";
+    public static final String ACCOUNT_MANAGER = "manager";
+    public static final String ACCOUNT_STUDENT = "student";
+
+
     private long id; //学生学号
 
     private String username;  //学生姓名
@@ -38,6 +43,16 @@ public class Account implements Serializable {
     private String salt;    //盐
 
     private Date createTime;    //创建时间
+
+    private String type;  // 账号类型
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public long getId() {
         return id;

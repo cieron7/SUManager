@@ -11,7 +11,7 @@
         account.password,
         account.sex,
         account.email,
-        account.screename,
+        account.screenName,
         account.locale,
         account.enabled,
         account.activated,
@@ -33,5 +33,26 @@
         account.username = #{userName}
         and
         account.password = #{userPwd}
+    </select>
+
+    <select id="findAccountList" resultType="net.dqsy.manager.pojo.Account">
+        SELECT
+        *
+        from
+        account
+        WHERE 1 = 1
+        <if test="types != null">
+            and  type in
+            <foreach item="type" index="index" collection="types" open="(" separator="," close=")">
+                #{type}
+            </foreach>
+        </if>
+
+        ORDER  BY
+        id
+        DESC
+        <if test="limit != 0">
+        LIMIT #{start},#{limit}
+        </if>
     </select>
 </mapper>

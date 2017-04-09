@@ -18,7 +18,7 @@ function logout(){
 	<%--</c:foreach>--%>
 <%--<c:if test="${ currentUser.userType=='管理员'}">--%>
 	  <a href="${pageContext.request.contextPath}/organizationRedirectController.do?action=list" class="list-group-item">机构信息管理</a>
-	  <a href="${pageContext.request.contextPath}/teacher?action=list" class="list-group-item">教师信息管理</a>
+	  <a href="${pageContext.request.contextPath}/accountRedirectController.do?action=list" class="list-group-item">账号信息管理</a>
 	  <a href="${pageContext.request.contextPath}/course?action=list" class="list-group-item">课程信息管理</a>
   <%--</c:if>--%>
   <%--<c:if test="${ currentUser.userType=='教师'}">--%>

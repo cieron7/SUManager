@@ -2,15 +2,14 @@ package net.dqsy.manager.service.impl;
 
 import net.dqsy.manager.mapper.AccountMapper;
 import net.dqsy.manager.pojo.Account;
-import net.dqsy.manager.service.AccountService;
+import net.dqsy.manager.service.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * Created by CAI on 2017/3/19.
- */
-@Service("accountService")
-public class AccountServiceImpl implements AccountService {
+import java.util.List;
+
+@Service
+public class AccountServiceImpl implements IAccountService {
     @Autowired
     private AccountMapper accountMapper;
 
@@ -23,5 +22,10 @@ public class AccountServiceImpl implements AccountService {
             return account;
         }
         return null;
+    }
+
+    @Override
+    public List<Account> findAccountList(List<String> types, int start, int limit) {
+        return accountMapper.findAccountList(types, (start - 1) * limit, limit);
     }
 }

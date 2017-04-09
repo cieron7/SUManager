@@ -76,5 +76,14 @@
         </property>
     </bean>
 
+    <bean name="/accountRedirectController.do" class="net.dqsy.manager.controller.AccountRedirectController">
+        <property name="methodNameResolver">
+            <ref bean="methodNameResolver"/>
+        </property>
+        <property name="accountService">
+            <ref bean="accountServiceImpl"/>
+        </property>
+    </bean>
+
 
 </beans>

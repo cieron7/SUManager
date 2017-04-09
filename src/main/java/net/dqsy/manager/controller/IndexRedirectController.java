@@ -1,7 +1,7 @@
 package net.dqsy.manager.controller;
 
 import net.dqsy.manager.pojo.Account;
-import net.dqsy.manager.service.AccountService;
+import net.dqsy.manager.service.IAccountService;
 import net.dqsy.manager.web.util.IpUtil;
 import net.dqsy.manager.web.util.MD5Util;
 import net.dqsy.manager.web.util.ParamUtils;
@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 public class IndexRedirectController {
 
     @Autowired
-    private AccountService accountService;
+    private IAccountService accountService;
 
     public static Logger logger = LoggerFactory.getLogger(IndexRedirectController.class);
 

@@ -18,6 +18,7 @@ public class OrganizationRedirectController extends MultiActionController {
     public void setOrganizationService(IOrganizationService organizationService) {
         this.organizationService = organizationService;
     }
+
     public ModelAndView list(HttpServletRequest request, HttpServletResponse response){
         Account currentAccount = (Account) request.getSession().getAttribute("currentAccount");
         Organization organization = organizationService.findOrganizationByAccountId(currentAccount.getId());
