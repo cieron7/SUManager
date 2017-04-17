@@ -21,7 +21,7 @@ public class AccountRedirectController extends MultiActionController {
     }
 
     public ModelAndView list(HttpServletRequest request, HttpServletResponse response){
-        List<String> types = new ArrayList<>();
+        List<String> types = new ArrayList<String>();
         types.add(Account.ACCOUNT_MANAGER);
         types.add(Account.ACCOUNT_STUDENT);
         List<Account> accountList = accountService.findAccountList(types, 1, 10);

@@ -15,7 +15,7 @@ public class ManageRedirectController {
     @RequestMapping("")
     public String managePage(Model model){
         // 临时配置左侧菜单
-        List<MenuDTO> list = new ArrayList<>();
+        List<MenuDTO> list = new ArrayList<MenuDTO>();
 
         MenuDTO menu01 = new MenuDTO("机构管理", "");
         MenuDTO menu02 = new MenuDTO("部门管理", "");
