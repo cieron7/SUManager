@@ -39,7 +39,7 @@ public class OrganizationRedirectController extends MultiActionController {
 
     public String save(HttpServletRequest request, HttpServletResponse response){
         long orgId = ParamUtils.getLongParameter(request, "orgId", 0L);
-        String orgName = ParamUtils.getParameter(request, "orgName", "为设定");
+        String orgName = ParamUtils.getParameter(request, "orgName", "未设定");
         String orgLogo = ParamUtils.getParameter(request, "orgLogo", "");
 
         Organization organization = organizationService.findById(orgId);

@@ -26,7 +26,7 @@
     <!--根据用户名查询用户信息-->
     <select id="findAccountByNameAndPassword" resultType="net.dqsy.manager.pojo.Account">
         select
-        <include refid="ziduan"/>
+        *
         FROM
         account
         WHERE

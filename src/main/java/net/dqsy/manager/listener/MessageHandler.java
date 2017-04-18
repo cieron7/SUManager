@@ -12,7 +12,7 @@ public class MessageHandler implements ApplicationListener<ContextRefreshedEvent
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        logger.info("---------------init-------------------");
+        //logger.info("---------------init-------------------");
         //ShardedJedis jredis = RedisUtil.getShardedJedis();
 
 
