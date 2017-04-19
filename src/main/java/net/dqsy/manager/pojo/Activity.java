@@ -25,6 +25,8 @@ public class Activity {
 
     private long departmentMemberId;    //部门成员id
 
+    private int type;
+
     public long getId() {
         return id;
     }
@@ -95,5 +97,13 @@ public class Activity {
 
     public void setDepartmentMemberId(long departmentMemberId) {
         this.departmentMemberId = departmentMemberId;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.dqsy.manager.mapper.ActivityMapper">
+
+    <select id="findById" resultType="net.dqsy.manager.pojo.Activity">
+        select
+        *
+        FROM
+        activity
+        WHERE
+        activity.id = #{id}
+    </select>
+
+    <select id="findList" resultType="net.dqsy.manager.pojo.Activity">
+        SELECT
+        *
+        from
+        activity
+        WHERE 1 = 1
+        <if test="types != null">
+            and  type in
+            <foreach item="type" index="index" collection="types" open="(" separator="," close=")">
+                #{type}
+            </foreach>
+        </if>
+
+        ORDER  BY
+        id
+        DESC
+        <if test="limit != 0">
+        LIMIT #{start},#{limit}
+        </if>
+    </select>
+
+    <select id="save" resultType="net.dqsy.manager.pojo.Activity">
+        SELECT
+        *
+        from
+        activity
+        WHERE 1 = 1
+        <if test="types != null">
+            and  type in
+            <foreach item="type" index="index" collection="types" open="(" separator="," close=")">
+                #{type}
+            </foreach>
+        </if>
+
+        ORDER  BY
+        id
+        DESC
+        <if test="limit != 0">
+            LIMIT #{start},#{limit}
+        </if>
+    </select>
+
+
+</mapper>
