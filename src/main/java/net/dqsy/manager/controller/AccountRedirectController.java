@@ -32,15 +32,16 @@ public class AccountRedirectController extends MultiActionController {
         Account account = (Account) request.getSession().getAttribute("currentAccount");
 
         int start = ParamUtils.getIntParameter(request, "page", 1);
-        int limit = ParamUtils.getIntParameter(request, "limit", 50);
+        int limit = ParamUtils.getIntParameter(request, "limit", 10);
+        String userName = ParamUtils.getParameter(request, "s_userName");
+        if(StringUtils.isBlank(userName) || "null".equals(userName)){
+            userName = null;
+        }
 
-//        List<Integer> types = new ArrayList<Integer>();
-//        types.add(Account.ACCOUNT_MANAGER);
-//        types.add(Account.ACCOUNT_STUDENT);
-        int totalCount = accountService.getTotalCount(Arrays.asList(Account.ACCOUNT_MANAGER, Account.ACCOUNT_STUDENT));
-        List<Account> accountList = accountService.findAccountList(Arrays.asList(Account.ACCOUNT_MANAGER, Account.ACCOUNT_STUDENT), start, limit);
+        int totalCount = accountService.getTotalCount(Arrays.asList(Account.ACCOUNT_MANAGER, Account.ACCOUNT_STUDENT), userName);
+        List<Account> accountList = accountService.findAccountList(Arrays.asList(Account.ACCOUNT_MANAGER, Account.ACCOUNT_STUDENT), userName, start, limit);
 
-        String pagation = PageUtil.getPagation("/accountRedirectController.do?action=list", totalCount, start, limit);
+        String pagation = PageUtil.getPagation("/accountRedirectController.do?action=list&s_userName=" + userName, totalCount, start, limit);
 
         ModelAndView mav = new ModelAndView("account/list");
         mav.getModel().put("accountList", accountList);
@@ -54,38 +55,73 @@ public class AccountRedirectController extends MultiActionController {
         String username = ParamUtils.getParameter(request, "username");
         int sex = ParamUtils.getIntParameter(request, "sex", 1);
         String mobile = ParamUtils.getParameter(request, "mobile");
+        String email = ParamUtils.getParameter(request, "email", "");
+        String screenName = ParamUtils.getParameter(request, "screenName", "");
+
 
         if(account_id == 0L || StringUtils.isBlank(username)){
             ResultUtil.fail(LocalizationUtil.getClientString("Account_22", request), response);
             return;
         }
 
+
         Account oldAccount = accountService.findAccountById(account_id);
         if(oldAccount != null){
-            ResultUtil.fail("当前学号的学生已经存在！", response);
-            return ;
+            oldAccount.setId(account_id);
+            oldAccount.setUsername(username);
+            oldAccount.setMobile(mobile);
+            oldAccount.setSex(sex);
+            oldAccount.setEmail(email);
+            oldAccount.setScreenName(screenName);
+            accountService.update(oldAccount);
+        }else{
+            Account account = new Account();
+            account.setId(account_id);
+            account.setUsername(username);
+            account.setMobile(mobile);
+            account.setSex(sex);
+            account.setCreateTime(new Date());
+            account.setActivated(true);
+            account.setEnabled(true);
+            account.setRegisterIp(IpUtil.getIpStr(request));
+            account.setPassword(MD5Util.getMD5("123456".getBytes()));
+            account.setScreenName(username);
+            account.setLocale(request.getLocale().getLanguage() +"_"+request.getLocale().getCountry());
+            account.setRegisterTime(new Date());
+            account.setCreateTime(new Date());
+            account.setType(Account.ACCOUNT_STUDENT);
+            accountService.save(account);
         }
 
-        Account account = new Account();
-        account.setId(account_id);
-        account.setUsername(username);
-        account.setMobile(mobile);
-        account.setSex(sex);
-        account.setCreateTime(new Date());
-        account.setActivated(true);
-        account.setEnabled(true);
-        account.setRegisterIp(IpUtil.getIpStr(request));
-        account.setPassword(MD5Util.getMD5("123456".getBytes()));
-        account.setScreenName(username);
-        account.setLocale(request.getLocale().getLanguage() +"_"+request.getLocale().getCountry());
-        account.setRegisterTime(new Date());
-        account.setCreateTime(new Date());
-        account.setType(Account.ACCOUNT_STUDENT);
-
-        accountService.save(account);
         ResultUtil.success(response);
 
     }
+
+    public void detail(HttpServletRequest request, HttpServletResponse response){
+        Long account_id = ParamUtils.getLongParameter(request, "account_id", 0L);
+        if(account_id == 0L){
+            ResultUtil.fail(LocalizationUtil.getClientString("Account_22", request), response);
+            return;
+        }
+
+        Account account = accountService.findAccountById(account_id);
+        ResultUtil.success(account, response);
+
+    }
+
+    public void delete(HttpServletRequest request, HttpServletResponse response){
+        Long account_id = ParamUtils.getLongParameter(request, "account_id", 0L);
+        if(account_id == 0L){
+            ResultUtil.fail(LocalizationUtil.getClientString("Account_22", request), response);
+            return;
+        }
+        accountService.deteleById(account_id);
+
+        Account account = accountService.findAccountById(account_id);
+        ResultUtil.success(account, response);
+
+    }
+
 
 
 }

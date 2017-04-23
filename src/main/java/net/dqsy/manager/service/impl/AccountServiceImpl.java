@@ -6,6 +6,7 @@ import net.dqsy.manager.service.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.management.OperationsException;
 import java.util.List;
 
 @Service
@@ -25,13 +26,13 @@ public class AccountServiceImpl implements IAccountService {
     }
 
     @Override
-    public List<Account> findAccountList(List<Integer> types, int start, int limit) {
-        return accountMapper.findAccountList(types, (start - 1) * limit, limit);
+    public List<Account> findAccountList(List<Integer> types,String userName,  int start, int limit) {
+        return accountMapper.findAccountList(types, userName, (start - 1) * limit, limit);
     }
 
     @Override
-    public int getTotalCount(List<Integer> types) {
-        return accountMapper.getTotalCount(types);
+    public int getTotalCount(List<Integer> types, String userName) {
+        return accountMapper.getTotalCount(types, userName);
     }
 
     @Override
@@ -42,5 +43,15 @@ public class AccountServiceImpl implements IAccountService {
     @Override
     public Account findAccountById(Long account_id) {
         return accountMapper.findAccountById(account_id);
+    }
+
+    @Override
+    public void update(Account oldAccount) {
+        accountMapper.update(oldAccount);
+    }
+
+    @Override
+    public void deteleById(Long account_id) {
+        accountMapper.deleteById(account_id);
     }
 }

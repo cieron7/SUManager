@@ -29,6 +29,9 @@
                 #{type}
             </foreach>
         </if>
+        <if test="userName != null">
+            and account.username LIKE CONCAT('%',#{userName},'%')
+        </if>
 
         ORDER  BY
         id
@@ -50,6 +53,10 @@
                 #{type}
             </foreach>
         </if>
+        <if test="userName != null">
+            and account.username LIKE CONCAT('%',#{userName},'%')
+        </if>
+
 
     </select>
 
@@ -69,4 +76,14 @@
         WHERE account.id = #{accountId}
 
     </select>
+
+    <update id="update">
+        update account SET username = #{account.username}, sex = #{account.sex}, screenName = #{account.screenName},
+        mobile = #{account.mobile}, email = #{account.email}  WHERE id = #{account.id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM account WHERE account.id = #{account_id}
+    </delete>
+
 </mapper>

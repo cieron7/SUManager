@@ -20,7 +20,7 @@
 
 			<div class="row search" >
 				<div class="col-md-6">
-					<form action="${pageContext.request.contextPath}/teacher?action=list" method="post">
+					<form action="${pageContext.request.contextPath}/accountRedirectController.do?action=list" method="post">
 						<div class="input-group" style="width: 300px">
 							<input type="text" class="form-control" name="s_userName"  value="${s_teacher.userName }" placeholder="请输入要查询的用户名...">
 							<span class="input-group-btn">
@@ -31,7 +31,7 @@
 				</div>
 				<div class="col-md-6" >
 					<button type="button"  style="float: right;" class="btn btn-primary" onclick="javascript:window.location.href='${pageContext.request.contextPath}/teacher?action=preSave'">批量导入</button>
-					<button class="btn btn-primary"  style="float: right;" data-toggle="modal" data-target="#myModal">添加</button>
+					<button id="account_add_btn" class="btn btn-primary"  style="float: right;" data-toggle="modal" data-target="#myModal">添加</button>
 				</div>
 			</div>
 
@@ -56,8 +56,9 @@
 							<td>${account.mobile }</td>
 							<td>${account.screenName }</td>
                             <td>${account.type }</td>
-							<td><button type="button" class="btn btn-info btn-xs" onclick="javascript:window.location.href='${pageContext.request.contextPath}/teacher?action=preSave&id=${teacher.id }'">修改</button>&nbsp;
-								<button type="button" class="btn btn-danger btn-xs" onclick="teacherDelete(${teacher.id })">删除</button></td>
+							<td><button type="button" class="btn btn-primary btn-xs" onclick="detail(${account.id })">详情</button>&nbsp;
+                                <button type="button" class="btn btn-info btn-xs" onclick="update(${account.id })">修改</button>&nbsp;
+								<button type="button" class="btn btn-danger btn-xs" onclick="accountDelete(${account.id })">删除</button></td>
 						</tr>
 					</c:forEach>
 
@@ -86,31 +87,13 @@
 </body>
 </html>
 
-<script type="text/javascript">
-	function teacherDelete(id){
-		if(confirm("确认要删除这条记录吗？")){
-			$.post("${pageContext.request.contextPath}/teacher?action=delete",{id:id},
-				function(result){
-					var result=eval('('+result+')');
-					if(result.success){
-						alert("删除成功!");
-						window.location.href="${pageContext.request.contextPath}/teacher?action=list";
-					}else{
-						alert(result.errorInfo);
-					}
-				}
-			);
-		}
-	}
-</script>
-
 <!--添加账号 -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">添加账号</h4>
+				<h4 class="modal-title" id="myModalLabel">账号信息</h4>
 			</div>
 			<div class="modal-body">
 				<form id="account_add_from" class="form-horizontal" role="form">
@@ -128,15 +111,15 @@
 					</div>
 
 					<div class="form-group">
-						<label for="sex" class="col-sm-2 control-label">性别</label>
+						<label class="col-sm-2 control-label">性别</label>
 						<div class="checkbox-inline">
 							<label>
-								<input type="radio" id="sex" name="sex" value="1" checked> 男
+								<input type="radio" id="sex1" name="sex" value="1" checked> 男
 							</label>
 						</div>
 						<div class="checkbox-inline">
 							<label>
-								<input type="radio" id="sex" name="sex" value="2"> 女
+								<input type="radio" id="sex2" name="sex" value="2"> 女
 							</label>
 						</div>
 					</div>
@@ -146,19 +129,41 @@
 							<input type="text" class="form-control" name="mobile" id="mobile" placeholder="请输入手机号码">
 						</div>
 					</div>
+                    <div class="form-group">
+                        <label for="email" class="col-sm-2 control-label">邮件地址</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="email" id="email" placeholder="邮件地址">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="screenName" class="col-sm-2 control-label">昵称</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="screenName" id="screenName" placeholder="昵称">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="type" class="col-sm-2 control-label">账号类型</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="type" id="type" placeholder="账号类型">
+                        </div>
+                    </div>
+
+
 
 				</form>
 
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-				<button id="account_add_submit" type="button" class="btn btn-primary" data-dismiss="modal">提交更改</button>
+				<button id="account_add_submit" type="button" class="btn btn-primary" data-dismiss="modal">提交</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal -->
 </div>
 <!-- 添加账号结束 -->
 <script type="text/javascript">
+
     $(function(){
         $("#account_add_submit").click(function(){
             $.ajax({
@@ -177,6 +182,113 @@
             });
         });
     });
+
+    /*查看学生详情*/
+    function detail(accountId) {
+        $.ajax({
+            type: 'post',
+            dataType: 'json',
+            url: '/accountRedirectController.do?action=detail',
+            data: {"account_id": accountId},
+            success: function(obj) {
+                if(obj.success == true){
+                    $("#account_add_btn").click();
+
+                    $("#account_id").val(obj.data.id);
+                    $('#account_id').attr("disabled","false");
+
+                    $("#username").val(obj.data.username);
+                    $('#username').attr("disabled","false");
+
+                    if(obj.data.sex == "1"){
+                        $('#sex1').attr("checked","true");
+                    }else{
+                        $('#sex2').attr("checked","true");
+                    }
+
+                    $("#mobile").val(obj.data.mobile);
+                    $('#mobile').attr("disabled","false");
+
+                    $("#email").val(obj.data.email);
+                    $('#email').attr("disabled","false");
+
+                    $("#screenName").val(obj.data.screenName);
+                    $('#screenName').attr("disabled","false");
+
+                    $("#username").val(obj.data.username);
+                    $('#username').attr("disabled","false");
+
+                    if(obj.data.type == 2){
+                        $("#type").val("部长");
+                    }else if(obj.data.type == 3){
+                        $("#type").val("学生");
+                    }
+                    $("#type").attr("disabled","false");
+
+                    $("#account_add_submit").remove();
+                }else{
+                    alert(obj.message);
+                }
+            }
+        });
+    }
+
+    /*查看学生详情*/
+    function update(accountId) {
+        $.ajax({
+            type: 'post',
+            dataType: 'json',
+            url: '/accountRedirectController.do?action=detail',
+            data: {"account_id": accountId},
+            success: function(obj) {
+                if(obj.success == true){
+                    $("#account_add_btn").click();
+
+                    $("#account_id").val(obj.data.id);
+                    $('#account_id').attr("readonly","true");
+
+                    $("#username").val(obj.data.username);
+
+                    if(obj.data.sex == "1"){
+                        $('#sex1').attr("checked","true");
+                    }else{
+                        $('#sex2').attr("checked","true");
+                    }
+
+                    $("#mobile").val(obj.data.mobile);
+
+                    $("#email").val(obj.data.email);
+
+                    $("#screenName").val(obj.data.screenName);
+
+                    $("#username").val(obj.data.username);
+
+                    $("#type").val("不可更改");
+                    $("#type").attr("disabled","false");
+                }else{
+                    alert(obj.message);
+                }
+            }
+        });
+    }
+
+    function accountDelete(accountId){
+        if(confirm("确认要删除这条记录吗？")){
+            $.ajax({
+                type: 'post',
+                dataType: 'json',
+                url: '/accountRedirectController.do?action=delete',
+                data: {"account_id": accountId},
+                success: function(obj) {
+                    if(obj.success == true){
+                        window.location.reload();
+                    }else{
+                        alert(obj.message);
+                    }
+                }
+            });
+        }
+    }
 
 </script>
 
