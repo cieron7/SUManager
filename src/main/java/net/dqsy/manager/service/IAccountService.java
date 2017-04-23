@@ -9,7 +9,9 @@ public interface IAccountService {
     //用户登录
     Account logon(String username, String password);
 
-    List<Account> findAccountList(List<String> types, int start, int limit);
+    List<Account> findAccountList(List<Integer> types, int start, int limit);
 
+
+    int getTotalCount(List<Integer> types);
 
 }

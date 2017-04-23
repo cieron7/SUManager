@@ -9,9 +9,9 @@ import java.util.Locale;
  */
 public class Account implements Serializable {
 
-    public static final String ACCOUNT_ADMIN = "admin";
-    public static final String ACCOUNT_MANAGER = "manager";
-    public static final String ACCOUNT_STUDENT = "student";
+    public static final Integer ACCOUNT_ADMIN = 1;
+    public static final Integer ACCOUNT_MANAGER = 2;
+    public static final Integer ACCOUNT_STUDENT = 3;
 
 
     private long id; //学生学号
@@ -44,13 +44,13 @@ public class Account implements Serializable {
 
     private Date createTime;    //创建时间
 
-    private String type;  // 账号类型
+    private int type;  // 账号类型
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 

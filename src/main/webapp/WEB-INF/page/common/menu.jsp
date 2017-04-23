@@ -12,14 +12,13 @@ function logout(){
     系统菜单
   </a>
 
-	<%--<c:foreach items="${menu}" var ="li" varStatus="status">--%>
-		<%--<c:if test="${status.first}">我是第一个元素</c:if>--%>
-		<%--<c:if test="${status.last}">我是最后一个元素</c:if>--%>
-	<%--</c:foreach>--%>
+	<c:forEach items="${functions}" var ="function" varStatus="status">
+		<a href="${pageContext.request.contextPath}${function.url}" class="list-group-item">${function.name}</a>
+	</c:forEach>
 <%--<c:if test="${ currentUser.userType=='管理员'}">--%>
-	  <a href="${pageContext.request.contextPath}/organizationRedirectController.do?action=list" class="list-group-item">机构信息管理</a>
-	  <a href="${pageContext.request.contextPath}/accountRedirectController.do?action=list" class="list-group-item">账号信息管理</a>
-	  <a href="${pageContext.request.contextPath}/course?action=list" class="list-group-item">课程信息管理</a>
+	  <%--<a href="${pageContext.request.contextPath}/organizationRedirectController.do?action=list" class="list-group-item">机构信息管理</a>--%>
+	  <%--<a href="${pageContext.request.contextPath}/accountRedirectController.do?action=list" class="list-group-item">账号信息管理</a>--%>
+	  <%--<a href="${pageContext.request.contextPath}/course?action=list" class="list-group-item">课程信息管理</a>--%>
   <%--</c:if>--%>
   <%--<c:if test="${ currentUser.userType=='教师'}">--%>
 	  <%--<a href="${pageContext.request.contextPath}/teacher?action=showCourse" class="list-group-item">查看课程</a>--%>

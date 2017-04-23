@@ -4,24 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="net.dqsy.manager.mapper.AccountMapper">
 
-    <!-- 字段(带主键) -->
-    <sql id="ziduan">
-        account.id,
-        account.username,
-        account.password,
-        account.sex,
-        account.email,
-        account.screenName,
-        account.locale,
-        account.enabled,
-        account.activated,
-        account.registertime,
-        account.lastlogintime,
-        account.registerip,
-        account.mobile,
-        account.salt,
-        account.createtime
-    </sql>
 
     <!--根据用户名查询用户信息-->
     <select id="findAccountByNameAndPassword" resultType="net.dqsy.manager.pojo.Account">
@@ -50,9 +32,24 @@
 
         ORDER  BY
         id
-        DESC
+        ASC
         <if test="limit != 0">
         LIMIT #{start},#{limit}
         </if>
+    </select>
+
+    <select id="getTotalCount" resultType="java.lang.Integer">
+        SELECT
+        COUNT(1)
+        from
+        account
+        WHERE 1 = 1
+        <if test="types != null">
+            and  type in
+            <foreach item="type" index="index" collection="types" open="(" separator="," close=")">
+                #{type}
+            </foreach>
+        </if>
+
     </select>
 </mapper>

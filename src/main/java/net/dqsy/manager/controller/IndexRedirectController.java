@@ -1,8 +1,9 @@
 package net.dqsy.manager.controller;
 
 import net.dqsy.manager.pojo.Account;
+import net.dqsy.manager.pojo.Function;
 import net.dqsy.manager.service.IAccountService;
-import net.dqsy.manager.web.util.IpUtil;
+import net.dqsy.manager.service.IFunctionService;
 import net.dqsy.manager.web.util.MD5Util;
 import net.dqsy.manager.web.util.ParamUtils;
 import org.slf4j.Logger;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 
 @Controller
@@ -22,6 +24,8 @@ public class IndexRedirectController {
 
     @Autowired
     private IAccountService accountService;
+    @Autowired
+    private IFunctionService functionService;
 
     public static Logger logger = LoggerFactory.getLogger(IndexRedirectController.class);
 
@@ -39,8 +43,9 @@ public class IndexRedirectController {
         }
         //将用户护具存入session
         request.getSession().setAttribute("currentAccount", account);
-        String ip = IpUtil.getIpStr(request);
-        logger.info("user: {}, ip: {}", account.getUsername(), ip);
+        // 权限列表
+        List<Function> functions = functionService.findFunctionListByRole(account.getType());
+        request.getSession().setAttribute("functions", functions);
         return "redirect:/index";
     }
 

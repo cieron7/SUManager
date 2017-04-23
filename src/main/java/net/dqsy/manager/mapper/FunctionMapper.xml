@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.dqsy.manager.mapper.FunctionMapper">
+
+    <select id="findFunctionListByRole" parameterType="int" resultType="net.dqsy.manager.pojo.Function">
+        SELECT * FROM function WHERE function.role = #{role} ORDER BY function.rank ASC
+    </select>
+
+</mapper>

@@ -25,7 +25,12 @@ public class AccountServiceImpl implements IAccountService {
     }
 
     @Override
-    public List<Account> findAccountList(List<String> types, int start, int limit) {
+    public List<Account> findAccountList(List<Integer> types, int start, int limit) {
         return accountMapper.findAccountList(types, (start - 1) * limit, limit);
+    }
+
+    @Override
+    public int getTotalCount(List<Integer> types) {
+        return accountMapper.getTotalCount(types);
     }
 }
