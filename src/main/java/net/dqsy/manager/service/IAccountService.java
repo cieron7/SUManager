@@ -14,4 +14,7 @@ public interface IAccountService {
 
     int getTotalCount(List<Integer> types);
 
+    void save(Account account);
+
+    Account findAccountById(Long account_id);
 }

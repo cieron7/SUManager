@@ -33,4 +33,14 @@ public class AccountServiceImpl implements IAccountService {
     public int getTotalCount(List<Integer> types) {
         return accountMapper.getTotalCount(types);
     }
+
+    @Override
+    public void save(Account account) {
+        accountMapper.save(account);
+    }
+
+    @Override
+    public Account findAccountById(Long account_id) {
+        return accountMapper.findAccountById(account_id);
+    }
 }

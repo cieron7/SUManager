@@ -2,6 +2,7 @@
 <html>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="../common/include.jsp"/>
 <body>
 <div class="container">
@@ -18,19 +19,29 @@
             <jsp:include page="../common/breadcrumbs.jsp"/>
 			<div>
 				<table class="table table-hover  table-bordered table-striped" style="margin-bottom: 0px;">
+
+
 					<tr>
-						<th>机构编号</th>
-						<th>机构名称</th>
-						<th>logo</th>
+						<th>活动编号</th>
+						<th>活动标题</th>
+						<th>活动人数</th>
+						<th>开始时间</th>
+						<th>结束时间</th>
 						<th>操作</th>
 					</tr>
+					<c:forEach var="activity" items="${activityList }" varStatus="status">
 						<tr>
-							<td>${organization.id }</td>
-							<td>${organization.name }</td>
-							<td>${organization.logo }</td>
-							<td><button type="button" class="btn btn-info btn-xs" onclick="javascript:window.location.href='${pageContext.request.contextPath}/organizationRedirectController.do?action=update&orgId=${organization.id }'">修改</button>&nbsp;
-								<button type="button" class="btn btn-danger btn-xs" onclick="studentDelete(${student.id })">删除</button></td>
+							<td>${activity.id }</td>
+							<td>${activity.title }</td>
+							<td>${activity.limitNum }</td>
+							<td><fmt:formatDate value="${activity.startTime}" pattern="yyyy/MM/dd HH:mm"/></td>
+							<td><fmt:formatDate value="${activity.endTime}" pattern="yyyy/MM/dd HH:mm"/></td>
+							<td><button type="button" class="btn btn-info btn-xs" onclick="javascript:window.location.href='${pageContext.request.contextPath}/teacher?action=preSave&id=${teacher.id }'">修改</button>&nbsp;
+								<button type="button" class="btn btn-danger btn-xs" onclick="teacherDelete(${teacher.id })">删除</button></td>
 						</tr>
+					</c:forEach>
+
+
 				</table>
 				<nav >
 					<ul class="pagination">

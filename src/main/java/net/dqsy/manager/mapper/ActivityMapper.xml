@@ -34,9 +34,14 @@
         </if>
     </select>
 
-    <select id="save" resultType="net.dqsy.manager.pojo.Activity">
+    <insert id="save" parameterType="net.dqsy.manager.pojo.Activity" keyProperty="id">
+
+    </insert>
+
+
+    <select id="getTotalCount" resultType="int">
         SELECT
-        *
+        COUNT(*)
         from
         activity
         WHERE 1 = 1
@@ -45,13 +50,6 @@
             <foreach item="type" index="index" collection="types" open="(" separator="," close=")">
                 #{type}
             </foreach>
-        </if>
-
-        ORDER  BY
-        id
-        DESC
-        <if test="limit != 0">
-            LIMIT #{start},#{limit}
         </if>
     </select>
 

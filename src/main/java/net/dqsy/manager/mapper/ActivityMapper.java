@@ -13,4 +13,6 @@ public interface ActivityMapper {
     Activity findById(@Param("id") long id);
 
     void save(@Param("activity") Activity activity);
+
+    int getTotalCount(@Param("types") List<Integer> types);
 }

@@ -13,4 +13,6 @@ public interface IActivityService {
 
     void save(Activity activity);
 
+    int getTotalCount(List<Integer> types);
+
 }

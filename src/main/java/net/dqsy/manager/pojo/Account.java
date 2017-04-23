@@ -2,7 +2,6 @@ package net.dqsy.manager.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Locale;
 
 /**
  * 账户
@@ -26,7 +25,7 @@ public class Account implements Serializable {
 
     private String screenName;  //昵称
 
-    private Locale locale;  //住址
+    private String locale;  //住址
 
     private boolean enabled;    //状态
 
@@ -102,11 +101,11 @@ public class Account implements Serializable {
         this.screenName = screenName;
     }
 
-    public Locale getLocale() {
+    public String getLocale() {
         return locale;
     }
 
-    public void setLocale(Locale locale) {
+    public void setLocale(String locale) {
         this.locale = locale;
     }
 

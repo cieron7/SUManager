@@ -85,5 +85,14 @@
         </property>
     </bean>
 
+    <bean name="/activityRedirectController.do" class="net.dqsy.manager.controller.ActivityRedirectController">
+        <property name="methodNameResolver">
+            <ref bean="methodNameResolver"/>
+        </property>
+        <property name="activityService">
+            <ref bean="activityServiceImpl"/>
+        </property>
+    </bean>
+
 
 </beans>

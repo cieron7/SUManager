@@ -52,4 +52,21 @@
         </if>
 
     </select>
+
+    <insert id="save">
+        INSERT INTO account
+        (id, username, password, sex, email, screenName, locale, enabled, activated, registertime, lastlogintime, registerip, mobile, type, salt, createtime) VALUES (#{account.id}, #{account.username},#{account.password}, #{account.sex}, #{account.email}, #{account.screenName}, #{account.locale}, #{account.enabled}, #{account.activated}, #{account.registerTime}, #{account.lastloginTime}, #{account.registerIp}, #{account.mobile}, #{account.type}, #{account.salt}, #{account.createTime})
+
+
+    </insert>
+
+
+    <select id="findAccountById" resultType="net.dqsy.manager.pojo.Account">
+        SELECT
+        *
+        from
+        account
+        WHERE account.id = #{accountId}
+
+    </select>
 </mapper>

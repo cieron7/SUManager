@@ -12,4 +12,8 @@ public interface AccountMapper {
     List<Account> findAccountList(@Param("types") List<Integer> types, @Param("start") int start, @Param("limit") int limit);
 
     int getTotalCount(@Param("types") List<Integer> types);
+
+    void save(@Param("account") Account account);
+
+    Account findAccountById(@Param("accountId") Long accountId);
 }

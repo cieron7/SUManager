@@ -2,6 +2,7 @@
 <html>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <jsp:include page="../common/include.jsp"/>
 <body>
 <div class="container">
@@ -29,7 +30,8 @@
 					</form>
 				</div>
 				<div class="col-md-6" >
-					<button type="button"  style="float: right;" class="btn btn-primary" onclick="javascript:window.location.href='${pageContext.request.contextPath}/teacher?action=preSave'">添加</button>
+					<button type="button"  style="float: right;" class="btn btn-primary" onclick="javascript:window.location.href='${pageContext.request.contextPath}/teacher?action=preSave'">批量导入</button>
+					<button class="btn btn-primary"  style="float: right;" data-toggle="modal" data-target="#myModal">添加</button>
 				</div>
 			</div>
 
@@ -101,6 +103,86 @@
 		}
 	}
 </script>
+
+<!--添加账号 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">添加账号</h4>
+			</div>
+			<div class="modal-body">
+				<form id="account_add_from" class="form-horizontal" role="form">
+					<div class="form-group">
+						<label for="account_id" class="col-sm-2 control-label">学号</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="account_id" name="account_id" placeholder="请输入学号">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="username" class="col-sm-2 control-label">名字</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" name="username" id="username" placeholder="请输入名字">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="sex" class="col-sm-2 control-label">性别</label>
+						<div class="checkbox-inline">
+							<label>
+								<input type="radio" id="sex" name="sex" value="1" checked> 男
+							</label>
+						</div>
+						<div class="checkbox-inline">
+							<label>
+								<input type="radio" id="sex" name="sex" value="2"> 女
+							</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="mobile" class="col-sm-2 control-label">手机号码</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" name="mobile" id="mobile" placeholder="请输入手机号码">
+						</div>
+					</div>
+
+				</form>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				<button id="account_add_submit" type="button" class="btn btn-primary" data-dismiss="modal">提交更改</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+<!-- 添加账号结束 -->
+<script type="text/javascript">
+    $(function(){
+        $("#account_add_submit").click(function(){
+            $.ajax({
+                type: 'post',
+                dataType: 'json',
+                url: '/accountRedirectController.do?action=add',
+                data: $("#account_add_from").serialize(),
+                success: function(obj) {
+                    if(obj.success == true){
+                        window.location.reload();
+					}else{
+                        alert(obj.message);
+
+					}
+                }
+            });
+        });
+    });
+
+</script>
+
+
+
+
 
 
 

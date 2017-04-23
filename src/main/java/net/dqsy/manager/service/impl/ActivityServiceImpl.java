@@ -29,4 +29,10 @@ public class ActivityServiceImpl implements IActivityService {
         activityMapper.save(activity);
 
     }
+
+    @Override
+    public int getTotalCount(List<Integer> types) {
+
+        return activityMapper.getTotalCount(types);
+    }
 }
