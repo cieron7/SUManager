@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.dqsy.manager.mapper.DepartmentMapper">
+
+    <select id="findList" resultType="net.dqsy.manager.pojo.Department">
+        SELECT
+        *
+        from
+        department
+        WHERE
+        org_id = #{orgId}
+        ORDER  BY
+        id
+        ASC
+        <if test="limit != 0">
+            LIMIT #{start},#{limit}
+        </if>
+    </select>
+
+    <insert id="add">
+        INSERT INTO department (name, description, photo_url, goal, function, org_id, createtime)
+        VALUES
+         (#{department.name}, #{department.description}, #{department.photoUrl}, #{department.goal}, #{department.function}, #{department.orgId}, #{department.createTime})
+    </insert>
+
+    <select id="getTotalCount" resultType="java.lang.Integer">
+        SELECT
+        COUNT(1)
+        from
+        department
+        WHERE department.org_id = #{orgId}
+    </select>
+
+    <select id="findDepartmentById" resultType="net.dqsy.manager.pojo.Department">
+        SELECT
+        *
+        from
+        department
+        WHERE department.id = #{departmentId}
+    </select>
+
+    <delete id="deleteById">
+        DELETE FROM department WHERE department.id = #{departmentId}
+    </delete>
+
+</mapper>

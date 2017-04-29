@@ -94,5 +94,17 @@
         </property>
     </bean>
 
+    <bean name="/departmentRedirectController.do" class="net.dqsy.manager.controller.DepartmentRedirectController">
+        <property name="methodNameResolver">
+            <ref bean="methodNameResolver"/>
+        </property>
+        <property name="departmentService">
+            <ref bean="departmentServiceImpl"/>
+        </property>
+        <property name="organizationService">
+            <ref bean="organizationServiceImpl"/>
+        </property>
+    </bean>
+
 
 </beans>
