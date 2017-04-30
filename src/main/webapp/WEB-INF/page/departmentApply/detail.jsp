@@ -45,6 +45,12 @@
 								</div>
 
 							</form>
+            <c:if test="${not empty manager}">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal" onclick="pendApply(${apply.id}, 3)">通过</button>
+                    <button id="account_add_submit" type="button" class="btn btn-danger" data-dismiss="modal" onclick="pendApply(${apply.id}, 2)">拒绝</button>
+                </div>
+            </c:if>
 
 		</div>
 	</div>
@@ -57,4 +63,25 @@
 </div>
 </body>
 </html>
+
+<script type="text/javascript">
+
+    function pendApply(applyId, status){
+            $.ajax({
+                type: 'get',
+                dataType: 'json',
+                url: '/departmentApply/pend',
+                data: {"applyId": applyId, "status":status},
+                success: function(obj) {
+                    if(obj.success == true){
+                        alert("操作成功！");
+                        window.location.href="/departmentApply/applyList";
+                    }else{
+                        alert(obj.message);
+                    }
+                }
+            });
+    }
+
+</script>
 

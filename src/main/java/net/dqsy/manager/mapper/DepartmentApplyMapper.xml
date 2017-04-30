@@ -12,11 +12,13 @@
     <select id="findApplyList" resultType="net.dqsy.manager.pojo.DepartmentApply">
         SELECT * from department_apply
         WHERE 1=1
-        AND
-        department_apply.accountId = #{accountId}
+        <if test="accountId != 0">
+            AND
+            department_apply.accountId = #{accountId}
+        </if>
+
         ORDER  BY
-        id
-        ASC
+        status ASC , createTime DESC
         <if test="limit != 0">
             LIMIT #{start},#{limit}
         </if>
@@ -28,8 +30,10 @@
         SELECT
         COUNT(*) from department_apply
         WHERE 1=1
-        AND
-        department_apply.accountId = #{accountId}
+        <if test="accountId != 0">
+            AND
+            department_apply.accountId = #{accountId}
+        </if>
     </select>
 
     <select id="findById" resultType="net.dqsy.manager.pojo.DepartmentApply">
@@ -41,6 +45,10 @@
 
     <update id="deleteById">
         DELETE  FROM  department_apply WHERE  id = #{applyId}
+    </update>
+
+    <update id="update">
+        update department_apply SET status = #{status} WHERE id = #{applyId}
     </update>
 
 </mapper>

@@ -2,6 +2,7 @@ package net.dqsy.manager.mapper;
 
 
 import net.dqsy.manager.pojo.Account;
+import net.dqsy.manager.pojo.DepartmentMember;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -13,4 +14,6 @@ public interface DepartmentMemberMapper {
     int getTotalCount(@Param("departmentId") long id);
 
     void delete(@Param("departmentId") long departmentId, @Param("accountId") long accountId);
+
+    void insert(@Param("member") DepartmentMember member);
 }

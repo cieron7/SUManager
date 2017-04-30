@@ -35,5 +35,10 @@
         WHERE department_member.account_id = #{accountId}
         and department_member.department_id = #{departmentId}
     </update>
+
+    <insert id="insert">
+        INSERT INTO department_member (account_id, department_id, role, remark, status, ctreatetime) VALUES
+        (#{member.accountId}, #{member.departmentId}, #{member.role}, #{member.remark}, #{member.status}, #{member.createTime})
+    </insert>
 </mapper>
 

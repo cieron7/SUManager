@@ -46,7 +46,6 @@ public class DepartmentMemberController {
         int totalCount = departmentMemberService.getTotalCount(department.getId());
         String pagation = PageUtil.getPagation("/departmentMember/list", totalCount, start, limit);
 
-
         ModelAndView mav = new ModelAndView("departmentMember/list");
         mav.getModel().put("department", department);
         mav.getModel().put("accountList", accountList);

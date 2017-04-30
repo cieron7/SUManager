@@ -2,6 +2,7 @@ package net.dqsy.manager.service;
 
 
 import net.dqsy.manager.pojo.Account;
+import net.dqsy.manager.pojo.DepartmentMember;
 
 import java.util.List;
 
@@ -12,4 +13,6 @@ public interface IDepartmentMemberService {
     int getTotalCount(long id);
 
     void delete(long departmentId, long accountId);
+
+    void insert(DepartmentMember member);
 }

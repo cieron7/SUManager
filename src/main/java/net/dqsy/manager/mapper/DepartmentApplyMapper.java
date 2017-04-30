@@ -16,4 +16,6 @@ public interface DepartmentApplyMapper {
     DepartmentApply findById(@Param("applyId") Long applyId);
 
     void deleteById(@Param("applyId") Long applyId);
+
+    void update(@Param("applyId") long applyId, @Param("status") int status);
 }

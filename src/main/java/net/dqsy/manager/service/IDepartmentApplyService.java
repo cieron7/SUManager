@@ -16,4 +16,6 @@ public interface IDepartmentApplyService {
     DepartmentApply findById(Long applyId);
 
     void deleteById(long id);
+
+    void update(long applyId, int status);
 }

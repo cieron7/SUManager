@@ -7,6 +7,10 @@ import java.util.Date;
  */
 public class DepartmentMember {
 
+    public static int ROLE_MEMBER = 1;
+    public static int ROLE_DEPUTY_MANAGER = 2;
+    public static int ROLE_MANAGER = 3;
+
     private long id;  //id
 
     private long accountId;     //用户id

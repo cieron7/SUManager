@@ -6,8 +6,8 @@ import java.util.Date;
 public class DepartmentApply {
 
     public static int NEW = 1;
-    public static int PASS = 2;
-    public static int REJECT = 3;
+    public static int REJECT = 2;
+    public static int PASS = 3;
 
 
 
@@ -28,6 +28,8 @@ public class DepartmentApply {
     private String departmentName;
 
     private String typeName;
+
+    private String statusName;
 
 
     public long getId() {
@@ -100,5 +102,13 @@ public class DepartmentApply {
 
     public void setTypeName(String typeName) {
         this.typeName = typeName;
+    }
+
+    public String getStatusName() {
+        return statusName;
+    }
+
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
     }
 }

@@ -2,6 +2,7 @@ package net.dqsy.manager.service.impl;
 
 import net.dqsy.manager.mapper.DepartmentMemberMapper;
 import net.dqsy.manager.pojo.Account;
+import net.dqsy.manager.pojo.DepartmentMember;
 import net.dqsy.manager.service.IDepartmentMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,5 +26,10 @@ public class DepartmentMemberServiceImpl implements IDepartmentMemberService{
     @Override
     public void delete(long departmentId, long accountId) {
         departmentMemberMapper.delete(departmentId, accountId);
+    }
+
+    @Override
+    public void insert(DepartmentMember member) {
+        departmentMemberMapper.insert(member);
     }
 }

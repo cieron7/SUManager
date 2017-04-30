@@ -38,4 +38,9 @@ public class DepartmentApplyServiceImpl implements IDepartmentApplyService{
     public void deleteById(long id) {
         departmentApplyMapper.deleteById(id);
     }
+
+    @Override
+    public void update(long applyId, int status) {
+        departmentApplyMapper.update(applyId, status);
+    }
 }
