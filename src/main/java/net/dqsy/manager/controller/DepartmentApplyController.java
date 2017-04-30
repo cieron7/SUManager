@@ -12,10 +12,12 @@ import net.dqsy.manager.web.util.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("departmentApply")
@@ -26,6 +28,32 @@ public class DepartmentApplyController {
     private IDepartmentService departmentService;
     @Autowired
     private IDepartmentApplyService departmentApplyService;
+
+    @RequestMapping("add")
+    public ModelAndView add(HttpServletRequest request, HttpServletResponse response){
+        Account account = (Account) request.getSession().getAttribute("currentAccount");
+        if (account == null) {
+            ModelAndView mav = new ModelAndView("redirect:/index");
+            return mav;
+        }
+        List<Department> departmentList = departmentService.findList(0, 1, 0);
+        ModelAndView mav = new ModelAndView("departmentApply/apply");
+        mav.getModel().put("departmentList", departmentList);
+        return mav;
+    }
+
+    @RequestMapping("getDepartmentList")
+    public void getDepartmentList(HttpServletRequest request, HttpServletResponse response){
+
+        Account account = (Account) request.getSession().getAttribute("currentAccount");
+        if (account == null) {
+            ResultUtil.fail(LocalizationUtil.getClientString("Account_22", request), response);
+            return;
+        }
+        List<Department> departmentList = departmentService.findList(0, 1, 0);
+        ResultUtil.success(departmentList, response);
+    }
+
 
     /**
      * 提交申请

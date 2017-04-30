@@ -23,8 +23,7 @@ public class SensitiveService implements InitializingBean {
         try {
             Resource fileRource = new ClassPathResource("JunkWords.txt");
             InputStream is = fileRource.getInputStream();
-//            InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("JunkWords.txt");
-            InputStreamReader reader = new InputStreamReader(is);
+            InputStreamReader reader = new InputStreamReader(is, "utf-8");
             BufferedReader bufferedReader = new BufferedReader(reader);
 
             String line;

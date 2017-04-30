@@ -9,8 +9,11 @@
         *
         from
         department
-        WHERE
-        org_id = #{orgId}
+        <if test="orgId != 0">
+            WHERE
+            org_id = #{orgId}
+        </if>
+
         ORDER  BY
         id
         ASC
