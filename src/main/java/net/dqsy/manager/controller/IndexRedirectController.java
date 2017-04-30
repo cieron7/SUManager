@@ -49,6 +49,12 @@ public class IndexRedirectController {
         return "redirect:/index";
     }
 
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response, Model model){
+        request.getSession().invalidate();
+        return "redirect:/index";
+    }
+
     @RequestMapping(value = {"index", ""})
     public String indexPage(HttpServletRequest request, HttpServletResponse response) {
         Account account = (Account) request.getSession().getAttribute("currentAccount");

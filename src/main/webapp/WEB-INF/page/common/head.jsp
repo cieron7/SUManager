@@ -17,7 +17,7 @@
       <ul class="nav navbar-nav">
         <li><a href="#" target="_blank" onclick="_hmt.push(['_trackEvent', 'navbar', 'click', 'expo'])">网络部-蔡蔡</a></li>
         <li><a href="/manage/" target="_blank" onclick="_hmt.push(['_trackEvent', 'navbar', 'click', 'expo'])">进入后台</a></li>
-        <li><a href="/" target="_blank" onclick="_hmt.push(['_trackEvent', 'navbar', 'click', 'expo'])">退出</a></li>
+        <li><a href="/logout" onclick="_hmt.push(['_trackEvent', 'navbar', 'click', 'expo'])">退出</a></li>
       </ul>
       <!--<ul class="nav navbar-nav navbar-right hidden-sm">-->
       <!--<li><a href="/about/" onclick="_hmt.push(['_trackEvent', 'navbar', 'click', 'about'])">关于</a></li>-->
