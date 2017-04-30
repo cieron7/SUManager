@@ -6,6 +6,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -19,7 +21,9 @@ public class SensitiveService implements InitializingBean {
 
     public void afterPropertiesSet() throws Exception {
         try {
-            InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("JunkWords.txt");
+            Resource fileRource = new ClassPathResource("JunkWords.txt");
+            InputStream is = fileRource.getInputStream();
+//            InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("JunkWords.txt");
             InputStreamReader reader = new InputStreamReader(is);
             BufferedReader bufferedReader = new BufferedReader(reader);
 

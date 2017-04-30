@@ -14,6 +14,6 @@ public class DepartmentApplyServiceImpl implements IDepartmentApplyService{
 
     @Override
     public void add(DepartmentApply apply) {
-        departmentApplyMapper.insert(apply);
+        departmentApplyMapper.save(apply);
     }
 }

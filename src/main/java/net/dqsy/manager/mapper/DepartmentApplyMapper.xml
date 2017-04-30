@@ -4,9 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="net.dqsy.manager.mapper.DepartmentApplyMapper">
 
-    <insert id="insert">
+   <insert id="save">
         INSERT INTO department_apply
-        (account_id, department_id, type, content, status, create_time) VALUES (#{apply.accountId, #{apply.departmentId}, #{apply.type}, #{apply.content}, #{apply.status}, #{apply.createTime})
+        (account_id, department_id, type, content, status, create_time) VALUES (#{departmentApply.accountId}, #{departmentApply.departmentId}, #{departmentApply.type}, #{departmentApply.content}, #{departmentApply.status}, #{departmentApply.createTime})
     </insert>
 
 </mapper>
