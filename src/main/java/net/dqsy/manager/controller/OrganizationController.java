@@ -7,7 +7,6 @@ import net.dqsy.manager.web.util.ParamUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +18,7 @@ public class OrganizationController {
     @Autowired
     private IOrganizationService organizationService;
 
-    @RequestMapping(value = "list", method = RequestMethod.GET)
+    @RequestMapping(value = "list")
     public ModelAndView list(HttpServletRequest request, HttpServletResponse response){
         Account currentAccount = (Account) request.getSession().getAttribute("currentAccount");
         Organization organization = organizationService.findOrganizationByAccountId(currentAccount.getId());
@@ -27,7 +26,7 @@ public class OrganizationController {
         mav.getModel().put("organization", organization);
         return mav;
     }
-    @RequestMapping(value = "update", method = RequestMethod.GET)
+    @RequestMapping(value = "update")
     public ModelAndView update(HttpServletRequest request, HttpServletResponse response){
         long orgId = ParamUtils.getLongParameter(request, "orgId", 0L);
 
@@ -37,7 +36,7 @@ public class OrganizationController {
         return mav;
 
     }
-    @RequestMapping(value = "save", method = RequestMethod.GET)
+    @RequestMapping(value = "save")
     public String save(HttpServletRequest request, HttpServletResponse response){
         long orgId = ParamUtils.getLongParameter(request, "orgId", 0L);
         String orgName = ParamUtils.getParameter(request, "orgName", "未设定");

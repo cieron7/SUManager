@@ -6,7 +6,41 @@
 
    <insert id="save">
         INSERT INTO department_apply
-        (account_id, department_id, type, content, status, create_time) VALUES (#{departmentApply.accountId}, #{departmentApply.departmentId}, #{departmentApply.type}, #{departmentApply.content}, #{departmentApply.status}, #{departmentApply.createTime})
+        (accountId, departmentId, type, content, status, createTime) VALUES (#{departmentApply.accountId}, #{departmentApply.departmentId}, #{departmentApply.type}, #{departmentApply.content}, #{departmentApply.status}, #{departmentApply.createTime})
     </insert>
+
+    <select id="findApplyList" resultType="net.dqsy.manager.pojo.DepartmentApply">
+        SELECT * from department_apply
+        WHERE 1=1
+        AND
+        department_apply.accountId = #{accountId}
+        ORDER  BY
+        id
+        ASC
+        <if test="limit != 0">
+            LIMIT #{start},#{limit}
+        </if>
+
+
+    </select>
+
+    <select id="getTotalCount" resultType="java.lang.Integer">
+        SELECT
+        COUNT(*) from department_apply
+        WHERE 1=1
+        AND
+        department_apply.accountId = #{accountId}
+    </select>
+
+    <select id="findById" resultType="net.dqsy.manager.pojo.DepartmentApply">
+        SELECT
+        * from department_apply
+        WHERE
+        department_apply.id = #{applyId}
+    </select>
+
+    <update id="deleteById">
+        DELETE  FROM  department_apply WHERE  id = #{applyId}
+    </update>
 
 </mapper>

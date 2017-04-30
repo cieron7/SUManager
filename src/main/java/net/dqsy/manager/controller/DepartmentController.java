@@ -12,7 +12,6 @@ import net.dqsy.manager.web.util.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +27,7 @@ public class DepartmentController{
     private IDepartmentService departmentService;
     @Autowired
     private IOrganizationService organizationService;
-    @RequestMapping(value = "list",method = RequestMethod.GET)
+    @RequestMapping(value = "list")
     public ModelAndView list(HttpServletRequest request, HttpServletResponse response){
         Account account = (Account) request.getSession().getAttribute("currentAccount");
         if (account == null) {
@@ -49,7 +48,7 @@ public class DepartmentController{
         mav.getModel().put("pageCode", pagation);
         return mav;
     }
-    @RequestMapping(value = "detail",method = RequestMethod.GET)
+    @RequestMapping(value = "detail")
     public void detail(HttpServletRequest request, HttpServletResponse response){
         Long departmentId = ParamUtils.getLongParameter(request, "department_id", 0L);
         if(departmentId == 0L){
@@ -60,7 +59,7 @@ public class DepartmentController{
         Department department = departmentService.findDepartmentById(departmentId);
         ResultUtil.success(department, response);
     }
-    @RequestMapping(value = "delete",method = RequestMethod.GET)
+    @RequestMapping(value = "delete")
     public void delete(HttpServletRequest request, HttpServletResponse response){
         Long departmentId = ParamUtils.getLongParameter(request, "department_id", 0L);
         if(departmentId == 0L){

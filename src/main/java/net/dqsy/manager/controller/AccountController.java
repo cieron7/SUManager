@@ -12,7 +12,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +26,7 @@ public class AccountController{
 
     @Autowired
     private IAccountService accountService;
-    @RequestMapping(value = "list", method = RequestMethod.GET)
+    @RequestMapping(value = "list")
     public ModelAndView list(HttpServletRequest request, HttpServletResponse response){
 
         Account account = (Account) request.getSession().getAttribute("currentAccount");
@@ -49,7 +48,7 @@ public class AccountController{
         mav.getModel().put("pageCode", pagation);
         return mav;
     }
-    @RequestMapping(value = "add", method = RequestMethod.GET)
+    @RequestMapping(value = "add")
     public void add(HttpServletRequest request, HttpServletResponse response){
 
         Long account_id = ParamUtils.getLongParameter(request, "account_id", 0L);
@@ -97,7 +96,7 @@ public class AccountController{
         ResultUtil.success(response);
 
     }
-    @RequestMapping(value = "detail", method = RequestMethod.GET)
+    @RequestMapping(value = "detail")
     public void detail(HttpServletRequest request, HttpServletResponse response){
         Long account_id = ParamUtils.getLongParameter(request, "account_id", 0L);
         if(account_id == 0L){
@@ -109,7 +108,7 @@ public class AccountController{
         ResultUtil.success(account, response);
 
     }
-    @RequestMapping(value = "delete", method = RequestMethod.GET)
+    @RequestMapping(value = "delete")
     public void delete(HttpServletRequest request, HttpServletResponse response){
         Long account_id = ParamUtils.getLongParameter(request, "account_id", 0L);
         if(account_id == 0L){

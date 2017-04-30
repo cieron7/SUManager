@@ -25,6 +25,10 @@ public class DepartmentApply {
 
     private Date createTime;
 
+    private String departmentName;
+
+    private String typeName;
+
 
     public long getId() {
         return id;
@@ -80,5 +84,21 @@ public class DepartmentApply {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 }
