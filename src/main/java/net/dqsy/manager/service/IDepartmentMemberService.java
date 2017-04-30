@@ -15,4 +15,6 @@ public interface IDepartmentMemberService {
     void delete(long departmentId, long accountId);
 
     void insert(DepartmentMember member);
+
+    Account findManager(long departmentId, int role);
 }

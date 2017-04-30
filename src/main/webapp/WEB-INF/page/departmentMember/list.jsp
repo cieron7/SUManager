@@ -19,7 +19,7 @@
 			<jsp:include page="../common/breadcrumbs.jsp"/>
 
 			<div>
-                <h3>部门名称：${department.name}</h3><h3>部门负责人：${departmentAdmin}</h3>
+                <h3>部门名称：${department.name}</h3><h3>部门负责人：${manager.username}</h3>
 				<table class="table table-hover  table-bordered table-striped" style="margin-bottom: 0px;">
 
 

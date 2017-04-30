@@ -16,4 +16,6 @@ public interface DepartmentMemberMapper {
     void delete(@Param("departmentId") long departmentId, @Param("accountId") long accountId);
 
     void insert(@Param("member") DepartmentMember member);
+
+    List<Account> findManager(@Param("departmentId") long departmentId, @Param("role") int role);
 }

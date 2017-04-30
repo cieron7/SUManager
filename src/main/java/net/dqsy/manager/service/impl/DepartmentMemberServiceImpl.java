@@ -32,4 +32,14 @@ public class DepartmentMemberServiceImpl implements IDepartmentMemberService{
     public void insert(DepartmentMember member) {
         departmentMemberMapper.insert(member);
     }
+
+    @Override
+    public Account findManager(long departmentId, int role) {
+        List<Account> members = departmentMemberMapper.findManager(departmentId, role);
+        if(members.size() > 0){
+            Account account = members.get(0);
+            return account;
+        }
+        return null;
+    }
 }

@@ -40,5 +40,11 @@
         INSERT INTO department_member (account_id, department_id, role, remark, status, ctreatetime) VALUES
         (#{member.accountId}, #{member.departmentId}, #{member.role}, #{member.remark}, #{member.status}, #{member.createTime})
     </insert>
+
+    <select id="findManager" resultType="net.dqsy.manager.pojo.Account">
+        SELECT *
+        FROM department_member, account WHERE department_member.account_id = account.id and department_member.role = #{role} AND
+        department_member.department_id = #{departmentId} ORDER  BY department_member.ctreatetime DESC
+    </select>
 </mapper>
 
