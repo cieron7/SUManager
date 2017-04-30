@@ -66,45 +66,4 @@
         </property>
     </bean>
 
-    <bean name="/organizationRedirectController.do" class="net.dqsy.manager.controller.OrganizationRedirectController">
-        <property name="methodNameResolver">
-            <ref bean="methodNameResolver"/>
-        </property>
-
-        <property name="organizationService">
-            <ref bean="organizationServiceImpl"/>
-        </property>
-    </bean>
-
-    <bean name="/accountRedirectController.do" class="net.dqsy.manager.controller.AccountRedirectController">
-        <property name="methodNameResolver">
-            <ref bean="methodNameResolver"/>
-        </property>
-        <property name="accountService">
-            <ref bean="accountServiceImpl"/>
-        </property>
-    </bean>
-
-    <bean name="/activityRedirectController.do" class="net.dqsy.manager.controller.ActivityRedirectController">
-        <property name="methodNameResolver">
-            <ref bean="methodNameResolver"/>
-        </property>
-        <property name="activityService">
-            <ref bean="activityServiceImpl"/>
-        </property>
-    </bean>
-
-    <bean name="/departmentRedirectController.do" class="net.dqsy.manager.controller.DepartmentRedirectController">
-        <property name="methodNameResolver">
-            <ref bean="methodNameResolver"/>
-        </property>
-        <property name="departmentService">
-            <ref bean="departmentServiceImpl"/>
-        </property>
-        <property name="organizationService">
-            <ref bean="organizationServiceImpl"/>
-        </property>
-    </bean>
-
-
 </beans>

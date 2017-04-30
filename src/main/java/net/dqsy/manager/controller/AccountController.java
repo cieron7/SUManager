@@ -9,8 +9,11 @@ import net.dqsy.manager.web.util.PageUtil;
 import net.dqsy.manager.web.util.ParamUtils;
 import net.dqsy.manager.web.util.ResultUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,15 +21,13 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+@Controller
+@RequestMapping("account")
+public class AccountController{
 
-public class AccountRedirectController extends MultiActionController {
-
+    @Autowired
     private IAccountService accountService;
-
-    public void setAccountService(IAccountService accountService) {
-        this.accountService = accountService;
-    }
-
+    @RequestMapping(value = "list", method = RequestMethod.GET)
     public ModelAndView list(HttpServletRequest request, HttpServletResponse response){
 
         Account account = (Account) request.getSession().getAttribute("currentAccount");
@@ -41,14 +42,14 @@ public class AccountRedirectController extends MultiActionController {
         int totalCount = accountService.getTotalCount(Arrays.asList(Account.ACCOUNT_MANAGER, Account.ACCOUNT_STUDENT), userName);
         List<Account> accountList = accountService.findAccountList(Arrays.asList(Account.ACCOUNT_MANAGER, Account.ACCOUNT_STUDENT), userName, start, limit);
 
-        String pagation = PageUtil.getPagation("/accountRedirectController.do?action=list&s_userName=" + userName, totalCount, start, limit);
+        String pagation = PageUtil.getPagation("/account/list&s_userName=" + userName, totalCount, start, limit);
 
         ModelAndView mav = new ModelAndView("account/list");
         mav.getModel().put("accountList", accountList);
         mav.getModel().put("pageCode", pagation);
         return mav;
     }
-
+    @RequestMapping(value = "add", method = RequestMethod.GET)
     public void add(HttpServletRequest request, HttpServletResponse response){
 
         Long account_id = ParamUtils.getLongParameter(request, "account_id", 0L);
@@ -96,7 +97,7 @@ public class AccountRedirectController extends MultiActionController {
         ResultUtil.success(response);
 
     }
-
+    @RequestMapping(value = "detail", method = RequestMethod.GET)
     public void detail(HttpServletRequest request, HttpServletResponse response){
         Long account_id = ParamUtils.getLongParameter(request, "account_id", 0L);
         if(account_id == 0L){
@@ -108,7 +109,7 @@ public class AccountRedirectController extends MultiActionController {
         ResultUtil.success(account, response);
 
     }
-
+    @RequestMapping(value = "delete", method = RequestMethod.GET)
     public void delete(HttpServletRequest request, HttpServletResponse response){
         Long account_id = ParamUtils.getLongParameter(request, "account_id", 0L);
         if(account_id == 0L){

@@ -4,23 +4,24 @@ import net.dqsy.manager.pojo.Activity;
 import net.dqsy.manager.service.IActivityService;
 import net.dqsy.manager.web.util.PageUtil;
 import net.dqsy.manager.web.util.ParamUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 import java.util.List;
 
+@Controller
+@RequestMapping("activity")
+public class ActivityController{
 
-public class ActivityRedirectController  extends MultiActionController {
-
+    @Autowired
     private IActivityService activityService;
-
-    public void setActivityService(IActivityService activityService) {
-        this.activityService = activityService;
-    }
-
+    @RequestMapping(value = "list", method = RequestMethod.GET)
     public ModelAndView list(HttpServletRequest request, HttpServletResponse response){
 
         int type = ParamUtils.getIntParameter(request, "type", 1);

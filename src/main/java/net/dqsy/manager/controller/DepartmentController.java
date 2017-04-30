@@ -9,35 +9,32 @@ import net.dqsy.manager.web.util.LocalizationUtil;
 import net.dqsy.manager.web.util.PageUtil;
 import net.dqsy.manager.web.util.ParamUtils;
 import net.dqsy.manager.web.util.ResultUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 
-public class DepartmentRedirectController  extends MultiActionController {
+@Controller
+@RequestMapping("department")
+public class DepartmentController{
 
+    @Autowired
     private IDepartmentService departmentService;
+    @Autowired
     private IOrganizationService organizationService;
-
-    public void setDepartmentService(IDepartmentService departmentService) {
-        this.departmentService = departmentService;
-    }
-
-    public void setOrganizationService(IOrganizationService organizationService) {
-        this.organizationService = organizationService;
-    }
-
+    @RequestMapping(value = "list",method = RequestMethod.GET)
     public ModelAndView list(HttpServletRequest request, HttpServletResponse response){
-
         Account account = (Account) request.getSession().getAttribute("currentAccount");
         if (account == null) {
             ModelAndView mav = new ModelAndView("redirect:/index");
             return mav;
         }
-
         Organization organization = organizationService.findOrganizationByAccountId(account.getId());
 
         int start = ParamUtils.getIntParameter(request, "page", 1);
@@ -45,14 +42,14 @@ public class DepartmentRedirectController  extends MultiActionController {
         List<Department> list = departmentService.findList(organization.getId(), start, limit);
         int totalCount = departmentService.getTotalCount(organization.getId());
 
-        String pagation = PageUtil.getPagation("/departmentRedirectController.do?action=list", totalCount, start, limit);
+        String pagation = PageUtil.getPagation("/department/list", totalCount, start, limit);
 
         ModelAndView mav = new ModelAndView("department/list");
         mav.getModel().put("departmentList", list);
         mav.getModel().put("pageCode", pagation);
         return mav;
     }
-
+    @RequestMapping(value = "detail",method = RequestMethod.GET)
     public void detail(HttpServletRequest request, HttpServletResponse response){
         Long departmentId = ParamUtils.getLongParameter(request, "department_id", 0L);
         if(departmentId == 0L){
@@ -63,7 +60,7 @@ public class DepartmentRedirectController  extends MultiActionController {
         Department department = departmentService.findDepartmentById(departmentId);
         ResultUtil.success(department, response);
     }
-
+    @RequestMapping(value = "delete",method = RequestMethod.GET)
     public void delete(HttpServletRequest request, HttpServletResponse response){
         Long departmentId = ParamUtils.getLongParameter(request, "department_id", 0L);
         if(departmentId == 0L){

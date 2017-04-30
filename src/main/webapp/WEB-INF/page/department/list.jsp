@@ -133,7 +133,7 @@
             $.ajax({
                 type: 'post',
                 dataType: 'json',
-                url: '/accountRedirectController.do?action=add',
+                url: '/account/add',
                 data: $("#account_add_from").serialize(),
                 success: function(obj) {
                     if(obj.success == true){
@@ -152,7 +152,7 @@
         $.ajax({
             type: 'post',
             dataType: 'json',
-            url: '/departmentRedirectController.do?action=detail',
+            url: '/department/detail',
             data: {"department_id": department_id},
             success: function(obj) {
                 if(obj.success == true){
@@ -186,7 +186,7 @@
         $.ajax({
             type: 'post',
             dataType: 'json',
-            url: '/accountRedirectController.do?action=detail',
+            url: '/account/detail',
             data: {"department_id": accountId},
             success: function(obj) {
                 if(obj.success == true){
@@ -225,7 +225,7 @@
             $.ajax({
                 type: 'post',
                 dataType: 'json',
-                url: '/departmentRedirectController.do?action=delete',
+                url: '/department/delete',
                 data: {"department_id": departmentId},
                 success: function(obj) {
                     if(obj.success == true){

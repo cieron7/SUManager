@@ -17,22 +17,22 @@
 		</div>
 		<div class="col-md-9">
 			<jsp:include page="../common/breadcrumbs.jsp"/>
+			<div class="dropdown">
+				<button type="button" class="btn dropdown-toggle" id="dropdownMenu1"
+						data-toggle="dropdown">
+					请选择部门
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+					<%--<li role="presentation" class="dropdown-header">下拉菜单标题</li>--%>
+                        <c:forEach var="department" items="${departmentList }" varStatus="status">
+                            <li role="presentation" onclick="getDepartmentMemberList(${department.id})">
+                                <a role="menuitem" tabindex="-1" href="#">${department.name }</a>
+                            </li>
+                        </c:forEach>
+					<li role="presentation" class="divider"></li>
 
-			<div class="row search" >
-				<div class="col-md-6">
-					<form action="${pageContext.request.contextPath}/accountRedirectController.do?action=list" method="post">
-						<div class="input-group" style="width: 300px">
-							<input type="text" class="form-control" name="s_userName"  value="${s_teacher.userName }" placeholder="请输入要查询的用户名...">
-							<span class="input-group-btn">
-		        <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span>&nbsp;查询</button>
-		      </span>
-						</div>
-					</form>
-				</div>
-				<div class="col-md-6" >
-					<button type="button"  style="float: right;" class="btn btn-primary" onclick="javascript:window.location.href='${pageContext.request.contextPath}/teacher?action=preSave'">批量导入</button>
-					<button id="account_add_btn" class="btn btn-primary"  style="float: right;" data-toggle="modal" data-target="#myModal">添加</button>
-				</div>
+				</ul>
 			</div>
 
 			<div>
@@ -288,6 +288,11 @@
                 }
             });
         }
+    }
+
+    function getDepartmentMemberList(departmentId) {
+        alert(departmentId);
+
     }
 
 </script>
