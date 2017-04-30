@@ -42,7 +42,7 @@
 							<td>
 								<button type="button" class="btn btn-primary btn-xs" onclick="detail(${department.id })">详情</button>&nbsp;
                                 <button type="button" class="btn btn-info btn-xs" onclick="update(${department.id })">修改</button>&nbsp;
-								<button type="button" class="btn btn-danger btn-xs" onclick="javascript:window.location.href='${pageContext.request.contextPath}/departmentMember/list?departmentId=${department.id }'">查看成员</button>
+								<button type="button" class="btn btn-primary btn-xs" onclick="javascript:window.location.href='${pageContext.request.contextPath}/departmentMember/list?departmentId=${department.id }'">查看成员</button>
 								<button type="button" class="btn btn-danger btn-xs" onclick="departmentDelete(${department.id })">删除</button>
 							</td>
 						</tr>

@@ -115,13 +115,15 @@
             $.ajax({
                 type: 'POST',
                 url: "/departmentApply/apply",
+                dataType: "json",
                 data: {"content": content, "departmentId":departmentId, "type":type},
                 success: function (obj) {
                     if(obj.success == true){
                         alert("提交申请成功！");
+                    }else{
+                        alert(obj.message);
                     }
-                },
-                dataType: JSON
+                }
             });
             // 清空数据
             UE.getEditor('editor').setContent('');
