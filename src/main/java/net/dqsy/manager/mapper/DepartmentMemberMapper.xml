@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.dqsy.manager.mapper.DepartmentMemberMapper">
+
+
+    <select id="findDepartmentMemberList" resultType="net.dqsy.manager.pojo.Account">
+        SELECT
+        account.*
+        FROM
+        `account`, department_member
+        WHERE
+        account.id = department_member.account_id
+        AND
+        department_member.department_id = #{departmentId}
+        order by account.type ASC
+        <if test="limit != 0">
+            LIMIT #{start},#{limit}
+        </if>
+    </select>
+
+
+    <select id="getTotalCount" resultType="java.lang.Integer">
+        SELECT
+        COUNT(*)
+        FROM
+        department_member
+        WHERE
+        department_member.department_id = #{departmentId}
+    </select>
+
+    <update id="delete">
+        DELETE from department_member
+        WHERE department_member.account_id = #{accountId}
+        and department_member.department_id = #{departmentId}
+    </update>
+</mapper>
+

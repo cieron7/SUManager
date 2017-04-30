@@ -17,27 +17,10 @@
 		</div>
 		<div class="col-md-9">
 			<jsp:include page="../common/breadcrumbs.jsp"/>
-			<div class="dropdown">
-				<button type="button" class="btn dropdown-toggle" id="dropdownMenu1"
-						data-toggle="dropdown">
-					请选择部门
-					<span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-					<%--<li role="presentation" class="dropdown-header">下拉菜单标题</li>--%>
-                        <c:forEach var="department" items="${departmentList }" varStatus="status">
-                            <li role="presentation" onclick="getDepartmentMemberList(${department.id})">
-                                <a role="menuitem" tabindex="-1" href="#">${department.name }</a>
-                            </li>
-                        </c:forEach>
-					<li role="presentation" class="divider"></li>
-
-				</ul>
-			</div>
 
 			<div>
 
-
+                <h3>部门名称：${department.name}</h3>
 				<table class="table table-hover  table-bordered table-striped" style="margin-bottom: 0px;">
 
 
@@ -46,7 +29,6 @@
 						<th>真实姓名</th>
 						<th>电话</th>
 						<th>昵称</th>
-						<th>账号类型</th>
 						<th>操作</th>
 					</tr>
 					<c:forEach var="account" items="${accountList }" varStatus="status">
@@ -55,14 +37,9 @@
 							<td>${account.username }</td>
 							<td>${account.mobile }</td>
 							<td>${account.screenName }</td>
-                            <td>${account.type }</td>
-							<td><button type="button" class="btn btn-primary btn-xs" onclick="detail(${account.id })">详情</button>&nbsp;
-                                <button type="button" class="btn btn-info btn-xs" onclick="update(${account.id })">修改</button>&nbsp;
-								<button type="button" class="btn btn-danger btn-xs" onclick="accountDelete(${account.id })">删除</button></td>
+							<td><button type="button" class="btn btn-danger btn-xs" onclick="accountDelete(${account.id })">删除</button></td>
 						</tr>
 					</c:forEach>
-
-
 				</table>
 
                 <nav >
@@ -275,10 +252,10 @@
     function accountDelete(accountId){
         if(confirm("确认要删除这条记录吗？")){
             $.ajax({
-                type: 'post',
+                type: 'get',
                 dataType: 'json',
-                url: '/account/delete',
-                data: {"account_id": accountId},
+                url: '/departmentMember/delete',
+                data: {"accountId": accountId, "departmentId":${department.id} },
                 success: function(obj) {
                     if(obj.success == true){
                         window.location.reload();
@@ -288,11 +265,6 @@
                 }
             });
         }
-    }
-
-    function getDepartmentMemberList(departmentId) {
-        alert(departmentId);
-
     }
 
 </script>
