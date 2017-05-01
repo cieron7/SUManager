@@ -5,7 +5,7 @@
 <mapper namespace="net.dqsy.manager.mapper.FunctionMapper">
 
     <select id="findFunctionListByRole" parameterType="int" resultType="net.dqsy.manager.pojo.Function">
-        SELECT * FROM function WHERE function.role = #{role} ORDER BY function.rank ASC
+        SELECT * FROM function WHERE #{role} >= function.role ORDER BY function.rank ASC
     </select>
 
 </mapper>

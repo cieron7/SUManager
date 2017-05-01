@@ -28,7 +28,7 @@
 							<td>${organization.id }</td>
 							<td>${organization.name }</td>
 							<td>${organization.logo }</td>
-							<td><button type="button" class="btn btn-info btn-xs" onclick="javascript:window.location.href='${pageContext.request.contextPath}/organizationRedirectController.do?action=update&orgId=${organization.id }'">修改</button>&nbsp;
+							<td><button type="button" class="btn btn-info btn-xs" onclick="javascript:window.location.href='${pageContext.request.contextPath}/organization/update?orgId=${organization.id }'">修改</button>&nbsp;
 								<button type="button" class="btn btn-danger btn-xs" onclick="studentDelete(${student.id })">删除</button></td>
 						</tr>
 				</table>

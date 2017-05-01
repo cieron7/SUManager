@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 import java.util.List;
 
 
@@ -69,5 +70,30 @@ public class DepartmentController{
         departmentService.deleteById(departmentId);
         ResultUtil.success(response);
 
+    }
+    @RequestMapping("add")
+    public void add(HttpServletRequest request, HttpServletResponse response){
+        Account account = (Account) request.getSession().getAttribute("currentAccount");
+        if (account == null) {
+            ResultUtil.fail(response);
+            return;
+        }
+
+        Long departmentId = ParamUtils.getLongParameter(request, "department_id", 0L);
+        String departmentName = ParamUtils.getParameter(request, "department_name");
+        String departmentFunction = ParamUtils.getParameter(request, "department_function");
+        String departmentDescription = ParamUtils.getParameter(request, "department_description");
+
+        Organization organization = organizationService.findOrganizationByAccountId(account.getId());
+        Department department = new Department();
+        department.setOrgId(organization.getId());
+        department.setName(departmentName);
+        department.setFunction(departmentFunction);
+        department.setDescription(departmentDescription);
+        department.setCreateTime(new Date());
+
+        departmentService.save(department);
+
+        ResultUtil.success(response);
     }
 }

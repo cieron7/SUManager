@@ -23,7 +23,7 @@
     </select>
 
     <insert id="add">
-        INSERT INTO department (name, description, photo_url, goal, function, org_id, createtime)
+        INSERT INTO department (name, description, photo_url, goal, function, org_id, createTime)
         VALUES
          (#{department.name}, #{department.description}, #{department.photoUrl}, #{department.goal}, #{department.function}, #{department.orgId}, #{department.createTime})
     </insert>

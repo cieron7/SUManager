@@ -8,9 +8,9 @@ import java.util.Date;
  */
 public class Account implements Serializable {
 
-    public static final Integer ACCOUNT_ADMIN = 1;
-    public static final Integer ACCOUNT_MANAGER = 2;
-    public static final Integer ACCOUNT_STUDENT = 3;
+    public static final Integer ACCOUNT_ADMIN = 6;
+    public static final Integer ACCOUNT_MANAGER = 5;
+    public static final Integer ACCOUNT_STUDENT = 1;
 
 
     private long id; //学生学号

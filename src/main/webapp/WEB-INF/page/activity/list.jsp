@@ -41,7 +41,7 @@
 							<td><fmt:formatDate value="${activity.startTime}" pattern="yyyy/MM/dd HH:mm"/></td>
 							<td><fmt:formatDate value="${activity.endTime}" pattern="yyyy/MM/dd HH:mm"/></td>
 							<td><button type="button" class="btn btn-info btn-xs" onclick="javascript:window.location.href='${pageContext.request.contextPath}/activity/detail?activityId=${activity.id }'">详情</button>&nbsp;
-								<button type="button" class="btn btn-danger btn-xs" onclick="teacherDelete(${teacher.id })">删除</button></td>
+								<button type="button" class="btn btn-danger btn-xs" onclick="activityDelete(${activity.id})">删除</button></td>
 						</tr>
 					</c:forEach>
 
@@ -65,7 +65,25 @@
 </div>
 </body>
 </html>
-
+<script type="text/javascript">
+    function activityDelete(activityId){
+        if(confirm("确认要删除这条记录吗？")){
+            $.ajax({
+                type: 'post',
+                dataType: 'json',
+                url: '/activity/delete',
+                data: {"activityId": activityId},
+                success: function(obj) {
+                    if(obj.success == true){
+                        window.location.reload();
+                    }else{
+                        alert(obj.message);
+                    }
+                }
+            });
+        }
+    }
+</script>
 
 
 

@@ -104,7 +104,7 @@
         //,imagePopup:true      //图片操作的浮层开关，默认打开
 
         //,autoSyncData:true //自动同步编辑器要提交的数据
-        //,emotionLocalization:false //是否开启表情本地化，默认关闭。若要开启请确保emotion文件夹下包含官网提供的images表情文件夹
+        //,emotionLocalization:true //是否开启表情本地化，默认关闭。若要开启请确保emotion文件夹下包含官网提供的images表情文件夹
 
         //粘贴只保留标签，去除标签所有属性
         //,retainOnlyLabelPasted: false
@@ -398,8 +398,8 @@
 			header: [],
 			hr:     [],
 			i:      ['class', 'style'],
-			img:    ['src', 'alt', 'title', 'width', 'height', 'id', '_src', 'loadingclass', 'class', 'data-latex'],
-			ins:    ['datetime'],
+			img:    ['src', 'alt', 'title', 'width', 'height', 'id', '_src', '_url', 'loadingclass', 'class', 'data-latex'],
+            ins:    ['datetime'],
 			li:     ['class', 'style'],
 			mark:   [],
 			nav:    [],

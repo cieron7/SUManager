@@ -76,9 +76,6 @@ public class ActivityController{
         Date start = sdf.parse(startTime);
         Date end = sdf.parse(endTime);
 
-        content = sensitiveService.filter(content);
-
-
         DepartmentMember member = departmentMemberService.findMemberByAccountId(account.getId());
         if(member == null){
             ResultUtil.fail(response);
@@ -92,6 +89,7 @@ public class ActivityController{
         activity.setStartTime(start);
         activity.setEndTime(end);
         activity.setDepartmentMemberId(member.getDepartmentId());
+        activity.setDepartmentId(member.getDepartmentId());
         activity.setType(Activity.ACTIVITY);
         activityService.add(activity);
         ResultUtil.success(response);
@@ -108,8 +106,17 @@ public class ActivityController{
         ModelAndView mav = new ModelAndView("activity/detail");
         mav.getModel().put("activity",activity);
         return mav;
-
-
+    }
+    @RequestMapping("delete")
+    public void delete(HttpServletRequest request, HttpServletResponse response){
+        Long activityId = ParamUtils.getLongParameter(request, "activityId");
+        Activity activity = activityService.findById(activityId);
+        if(activity == null){
+            ResultUtil.fail(response);
+            return;
+        }
+        activityService.deleteById(activity.getId());
+        ResultUtil.success(response);
     }
 
 

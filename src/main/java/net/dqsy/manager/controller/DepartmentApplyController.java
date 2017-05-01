@@ -4,6 +4,7 @@ import net.dqsy.manager.pojo.Account;
 import net.dqsy.manager.pojo.Department;
 import net.dqsy.manager.pojo.DepartmentApply;
 import net.dqsy.manager.pojo.DepartmentMember;
+import net.dqsy.manager.service.IAccountService;
 import net.dqsy.manager.service.IDepartmentApplyService;
 import net.dqsy.manager.service.IDepartmentMemberService;
 import net.dqsy.manager.service.IDepartmentService;
@@ -33,6 +34,8 @@ public class DepartmentApplyController {
     private IDepartmentApplyService departmentApplyService;
     @Autowired
     private IDepartmentMemberService departmentMemberService;
+    @Autowired
+    private IAccountService accountService;
 
     @RequestMapping("add")
     public ModelAndView add(HttpServletRequest request, HttpServletResponse response){
@@ -60,13 +63,15 @@ public class DepartmentApplyController {
         if(list.size()> 0){
             for(DepartmentApply departmentApply :list){
                 Department department = departmentService.findDepartmentById(departmentApply.getDepartmentId());
-                departmentApply.setDepartmentName(department.getName());
-                if (departmentApply.getType() == 4) {
-                    departmentApply.setTypeName("部长");
-                } else if (departmentApply.getType() == 5) {
-                    departmentApply.setTypeName("副部长");
-                } else if (departmentApply.getType() == 6) {
-                    departmentApply.setTypeName("部员");
+                if(department != null){
+                    departmentApply.setDepartmentName(department.getName());
+                    if (departmentApply.getType() == 6) {
+                        departmentApply.setTypeName("部长");
+                    } else if (departmentApply.getType() == 5) {
+                        departmentApply.setTypeName("副部长");
+                    } else if (departmentApply.getType() == 4) {
+                        departmentApply.setTypeName("部员");
+                    }
                 }
             }
         }
@@ -155,13 +160,16 @@ public class DepartmentApplyController {
         ModelAndView mav = new ModelAndView("departmentApply/detail");
         Department department = departmentService.findDepartmentById(apply.getDepartmentId());
         apply.setDepartmentName(department.getName());
-        if (apply.getType() == 4) {
+        if (apply.getType() == 6) {
             apply.setTypeName("部长");
         } else if (apply.getType() == 5) {
             apply.setTypeName("副部长");
-        } else if (apply.getType() == 6) {
+        } else if (apply.getType() == 4) {
             apply.setTypeName("部员");
         }
+
+        long accountId = apply.getAccountId();
+        Account account1 = accountService.findAccountById(accountId);
 
         if(account.getType() == Account.ACCOUNT_ADMIN || account.getType() == Account.ACCOUNT_MANAGER){
             if(apply.getStatus() == DepartmentApply.NEW){
@@ -169,6 +177,7 @@ public class DepartmentApplyController {
             }
         }
         mav.getModel().put("apply", apply);
+        mav.getModel().put("applyName", account1.getUsername());
         return mav;
     }
 
@@ -182,11 +191,11 @@ public class DepartmentApplyController {
             for(DepartmentApply departmentApply :list){
                 Department department = departmentService.findDepartmentById(departmentApply.getDepartmentId());
                 departmentApply.setDepartmentName(department.getName());
-                if (departmentApply.getType() == 4) {
+                if (departmentApply.getType() == 6) {
                     departmentApply.setTypeName("部长");
                 } else if (departmentApply.getType() == 5) {
                     departmentApply.setTypeName("副部长");
-                } else if (departmentApply.getType() == 6) {
+                } else if (departmentApply.getType() == 4) {
                     departmentApply.setTypeName("部员");
                 }
 
@@ -239,6 +248,10 @@ public class DepartmentApplyController {
             member.setRole(departmentApply.getType());
             member.setStatus(1);
             departmentMemberService.insert(member);
+
+            account.setType(departmentApply.getType());
+            // 更改用户状态
+            accountService.update(account);
 
         }
         departmentApplyService.update(applyId, status);

@@ -44,9 +44,9 @@
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
 
-                                                <li onclick="selectPosition('部长', 4)"><a href="#">部长</a></li>
+                                                <li onclick="selectPosition('部长', 6)"><a href="#">部长</a></li>
                                                 <li onclick="selectPosition('副部长', 5)"><a href="#">副部长</a></li>
-                                                <li onclick="selectPosition('部员', 6)"><a href="#">部员</a></li>
+                                                <li onclick="selectPosition('部员', 4)"><a href="#">部员</a></li>
                                             <input type="hidden" class="form-control" id="position_type" name="position_type">
                                         </ul>
                                     </div>

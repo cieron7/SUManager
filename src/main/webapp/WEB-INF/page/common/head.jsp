@@ -15,7 +15,7 @@
     </div>
     <div class="navbar-collapse collapse" role="navigation" style="float: right">
       <ul class="nav navbar-nav">
-        <li><a href="#" target="_blank" onclick="_hmt.push(['_trackEvent', 'navbar', 'click', 'expo'])">网络部-蔡蔡</a></li>
+        <li><a href="#" target="_blank" onclick="_hmt.push(['_trackEvent', 'navbar', 'click', 'expo'])">${department}${currentAccount.username}</a></li>
         <li><a href="/manage/" target="_blank" onclick="_hmt.push(['_trackEvent', 'navbar', 'click', 'expo'])">进入后台</a></li>
         <li><a href="/logout" onclick="_hmt.push(['_trackEvent', 'navbar', 'click', 'expo'])">退出</a></li>
       </ul>

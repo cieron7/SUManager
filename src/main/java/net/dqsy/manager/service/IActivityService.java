@@ -17,4 +17,5 @@ public interface IActivityService {
 
     void add(Activity activity);
 
+    void deleteById(long activityId);
 }

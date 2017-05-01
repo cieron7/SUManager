@@ -20,7 +20,7 @@
 
 			<div class="row search" >
 				<div class="col-md-6">
-					<form action="${pageContext.request.contextPath}/accountRedirectController.do?action=list" method="post">
+					<form action="${pageContext.request.contextPath}/account/list" method="post">
 						<div class="input-group" style="width: 300px">
 							<input type="text" class="form-control" name="s_userName"  value="${s_teacher.userName }" placeholder="请输入要查询的用户名...">
 							<span class="input-group-btn">
@@ -30,7 +30,7 @@
 					</form>
 				</div>
 				<div class="col-md-6" >
-					<button type="button"  style="float: right;" class="btn btn-primary" onclick="javascript:window.location.href='${pageContext.request.contextPath}/teacher?action=preSave'">批量导入</button>
+					<%--<button type="button"  style="float: right;" class="btn btn-primary" onclick="javascript:window.location.href='${pageContext.request.contextPath}/teacher?action=preSave'">批量导入</button>--%>
 					<button id="account_add_btn" class="btn btn-primary"  style="float: right;" data-toggle="modal" data-target="#myModal">添加</button>
 				</div>
 			</div>
@@ -39,8 +39,6 @@
 
 
 				<table class="table table-hover  table-bordered table-striped" style="margin-bottom: 0px;">
-
-
 					<tr>
 						<th>学号</th>
 						<th>真实姓名</th>

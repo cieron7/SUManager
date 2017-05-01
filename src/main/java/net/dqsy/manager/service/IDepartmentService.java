@@ -17,4 +17,6 @@ public interface IDepartmentService {
 
     void deleteById(Long departmentId);
 
+    void save(Department department);
+
 }

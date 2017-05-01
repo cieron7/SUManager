@@ -18,4 +18,5 @@ public interface ActivityMapper {
 
     void add(@Param("activity")Activity activity);
 
+    void deleteById(@Param("activityId") long activityId);
 }

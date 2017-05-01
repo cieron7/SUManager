@@ -19,6 +19,14 @@
 			<jsp:include page="../common/breadcrumbs.jsp"/>
 							<form id="account_add_from" class="form-horizontal" role="form">
 								<div class="form-group">
+									<label class="col-sm-2 control-label">申请人</label>
+									<div class="col-sm-10">
+										<button id="department_btn1" type="button" class="btn btn-default">
+											${applyName}
+										</button>
+									</div>
+								</div>
+								<div class="form-group">
 									<label class="col-sm-2 control-label">申请部门</label>
 									<div class="col-sm-10">
 										<button id="department_btn" type="button" class="btn btn-default">
@@ -82,6 +90,5 @@
                 }
             });
     }
-
 </script>
 

@@ -43,7 +43,7 @@
 								<button type="button" class="btn btn-primary btn-xs" onclick="detail(${department.id })">详情</button>&nbsp;
                                 <button type="button" class="btn btn-info btn-xs" onclick="update(${department.id })">修改</button>&nbsp;
 								<button type="button" class="btn btn-primary btn-xs" onclick="javascript:window.location.href='${pageContext.request.contextPath}/departmentMember/list?departmentId=${department.id }'">查看成员</button>
-								<button type="button" class="btn btn-danger btn-xs" onclick="departmentDelete(${department.id })">删除</button>
+								<%--<button type="button" class="btn btn-danger btn-xs" onclick="departmentDelete(${department.id })">删除</button>--%>
 							</td>
 						</tr>
 					</c:forEach>
@@ -136,7 +136,7 @@
             $.ajax({
                 type: 'post',
                 dataType: 'json',
-                url: '/account/add',
+                url: '/department/add',
                 data: $("#account_add_from").serialize(),
                 success: function(obj) {
                     if(obj.success == true){
@@ -189,7 +189,7 @@
         $.ajax({
             type: 'post',
             dataType: 'json',
-            url: '/account/detail',
+            url: '/department/detail',
             data: {"department_id": accountId},
             success: function(obj) {
                 if(obj.success == true){

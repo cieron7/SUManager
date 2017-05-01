@@ -24,7 +24,7 @@ public class Activity {
 
     private Date endTime;       //结束时间
 
-    private long apartmentId;   //活动id
+    private long departmentId;   //活动id
 
     private long departmentMemberId;    //部门成员id
 
@@ -86,12 +86,12 @@ public class Activity {
         this.endTime = endTime;
     }
 
-    public long getApartmentId() {
-        return apartmentId;
+    public long getDepartmentId() {
+        return departmentId;
     }
 
-    public void setApartmentId(long apartmentId) {
-        this.apartmentId = apartmentId;
+    public void setDepartmentId(long departmentId) {
+        this.departmentId = departmentId;
     }
 
     public long getDepartmentMemberId() {

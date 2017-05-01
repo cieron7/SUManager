@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
     <jsp:include page="common/include.jsp"/>
 </head>
@@ -49,13 +51,13 @@
 
 
         <!--富文本编辑器开始-->
-		<div class="main">
-			<div class="think">
-                <div><script id="editor" type="text/plain" style="width:1000px;height:100px;"></script></div>
-                <button id="submit" style="margin-top: 1px" class="btn btn-primary" style="">发送</button>
-                <button id="clean" style="margin-top: 1px" class="btn btn-primary" style="">清空内容</button>
-            </div>
-        </div>
+		<%--<div class="main">--%>
+			<%--<div class="think">--%>
+                <%--<div><script id="editor" type="text/plain" style="width:1000px;height:100px;"></script></div>--%>
+                <%--<button id="submit" style="margin-top: 1px" class="btn btn-primary" style="">发送</button>--%>
+                <%--<button id="clean" style="margin-top: 1px" class="btn btn-primary" style="">清空内容</button>--%>
+            <%--</div>--%>
+        <%--</div>--%>
         <!--富文本编辑器结束-->
 
         <!--主要内容和评论区-->
@@ -65,251 +67,131 @@
                     校园学工动态
                 </h1>
             </span>
+
+            <c:forEach var="activity" items="${activityList }" varStatus="status">
+                <div class="content-area-display">
+                    <div class="content-area-inline">
+                        <div class="headImg">
+                            <img src="/images/headImg/01.jpg" style="width:50px;height:50px;border-radius:inherit"/>
+                        </div>
+                        <div style="display:inline-block;margin-left:10px">
+                            <div>${activity.departmentName}  ${activity.userName}</div>
+                            <!--todo 两行显示-->
+                            <!--<div>19:30</div>-->
+
+                        </div>
+
+                        <div class="content-info">
+                            <center><h1>${activity.title}</h1></center>
+                                ${activity.content}
+                        </div>
+                        <!--三个按钮-->
+                        <div class="content-icon">
+                            <span style="margin-right:580px;font-size:15px">${activity.createTime}</span>
+                            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="margin-right:10px"></span>
+                            <%--<span class="glyphicon glyphicon-share-alt" aria-hidden="true" style="margin-right:10px"></span>--%>
+                            <%--<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>--%>
+                        </div>
+                        <!--三个按钮结束-->
+                        <hr style="margin-top:5px;margin-bottom:5px;border-top-color:rgb(125, 104, 104)">
+                        <!--评论区-->
+                        <%--<div class="content-comment">--%>
+                            <%--<div class="comment-headImg">--%>
+                                <%--<img src="/images/headImg/01.jpg" style="width:35px;height:35px;border-radius:inherit"/>--%>
+                            <%--</div>--%>
+                            <%--<div style="display:inline-block;margin-left:10px">--%>
+                                <%--<div>李二狗&nbsp;&nbsp;:</div>--%>
+                                <%--<!--todo 两行显示-->--%>
+                                <%--<!--<div>19:30</div>-->--%>
+
+                            <%--</div>--%>
+                            <%--<div style="display:inline-block;margin-left:10px;background-color: #9cb930;width: 628px;min-height: 32px;">--%>
+                                <%--这个伟大历史胜利，是毛泽东同志和他的战友们，是千千万万革命志士和革命烈士，是亿万中国人民，共同为中华民族建立的伟大历史功勋。这一伟大奋斗历程和成果充分证明了毛泽东同志所说的：“我们中华民族有同自己的敌人血战到底的气概，有在自力更生的基础上光复旧物的决心，有自立于世界民族之林的能力。”--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <!--评论区结束-->
+
+                        <!--评论区-->
+                        <%--<div class="content-comment">--%>
+                            <%--<div class="comment-headImg">--%>
+                                <%--<img src="/images/headImg/01.jpg" style="width:35px;height:35px;border-radius:inherit"/>--%>
+                            <%--</div>--%>
+                            <%--<div style="display:inline-block;margin-left:10px">--%>
+                                <%--<div>李二狗&nbsp;&nbsp;:</div>--%>
+                                <%--<!--todo 两行显示-->--%>
+                                <%--<!--<div>19:30</div>-->--%>
+
+                            <%--</div>--%>
+                            <%--<div style="display:inline-block;margin-left:10px;background-color: #9cb930;width: 628px;min-height: 32px;">--%>
+                                <%--这个伟大历史胜利，是毛泽东同志和他的战友们，是千千万万革命志士和革命烈士，是亿万中国人民，共同为中华民族建立的伟大历史功勋。这一伟大奋斗历程和成果充分证明了毛泽东同志所说的：“我们中华民族有同自己的敌人血战到底的气概，有在自力更生的基础上光复旧物的决心，有自立于世界民族之林的能力。”--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <!--评论区结束-->
+
+                        <!--评论区-->
+                        <%--<div class="content-comment">--%>
+                            <%--<div class="comment-headImg">--%>
+                                <%--<img src="/images/headImg/01.jpg" style="width:35px;height:35px;border-radius:inherit"/>--%>
+                            <%--</div>--%>
+                            <%--<div style="display:inline-block;margin-left:10px">--%>
+                                <%--<div>李二狗&nbsp;&nbsp;:</div>--%>
+                                <%--<!--todo 两行显示-->--%>
+                                <%--<!--<div>19:30</div>-->--%>
+
+                            <%--</div>--%>
+                            <%--<div style="display:inline-block;margin-left:10px;background-color: #9cb930;width: 628px;min-height: 32px;">--%>
+                                <%--这个伟大历史胜利，是毛泽东同志和他的战友们，是千千万万革命志士和革命烈士，是亿万中国人民，共同为中华民族建立的伟大历史功勋。这一伟大奋斗历程和成果充分证明了毛泽东同志所说的：“我们中华民族有同自己的敌人血战到底的气概，有在自力更生的基础上光复旧物的决心，有自立于世界民族之林的能力。”--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <!--评论区结束-->
+
+                        <!--评论区-->
+                        <%--<div class="content-comment">--%>
+                            <%--<div class="comment-headImg">--%>
+                                <%--<img src="/images/headImg/01.jpg" style="width:35px;height:35px;border-radius:inherit"/>--%>
+                            <%--</div>--%>
+                            <%--<div style="display:inline-block;margin-left:10px">--%>
+                                <%--<div>李二狗&nbsp;&nbsp;:</div>--%>
+                                <%--<!--todo 两行显示-->--%>
+                                <%--<!--<div>19:30</div>-->--%>
+
+                            <%--</div>--%>
+                            <%--<div style="display:inline-block;margin-left:10px;background-color: #9cb930;width: 628px;min-height: 32px;">--%>
+                                <%--这个伟大历史胜利，是毛泽东同志和他的战友们，是千千万万革命志士和革命烈士，是亿万中国人民，共同为中华民族建立的伟大历史功勋。这一伟大奋斗历程和成果充分证明了毛泽东同志所说的：“我们中华民族有同自己的敌人血战到底的气概，有在自力更生的基础上光复旧物的决心，有自立于世界民族之林的能力。”--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <!--评论区结束-->
+
+                        <!--评论区-->
+                        <%--<div class="content-comment">--%>
+                            <%--<div class="comment-headImg">--%>
+                                <%--<img src="/images/headImg/01.jpg" style="width:35px;height:35px;border-radius:inherit"/>--%>
+                            <%--</div>--%>
+                            <%--<div style="display:inline-block;margin-left:10px">--%>
+                                <%--<div>李二狗&nbsp;&nbsp;:</div>--%>
+                                <%--<!--todo 两行显示-->--%>
+                                <%--<!--<div>19:30</div>-->--%>
+
+                            <%--</div>--%>
+                            <%--<div style="display:inline-block;margin-left:10px;background-color: #9cb930;width: 628px;min-height: 32px;">--%>
+                                <%--这个伟大历史胜利，是毛泽东同志和他的战友们，是千千万万革命志士和革命烈士，是亿万中国人民，共同为中华民族建立的伟大历史功勋。这一伟大奋斗历程和成果充分证明了毛泽东同志所说的：“我们中华民族有同自己的敌人血战到底的气概，有在自力更生的基础上光复旧物的决心，有自立于世界民族之林的能力。”--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <!--评论展示结束-->
+
+                        <!--评论窗口-->
+                        <%--<div contentEditable=true class="comment-area" onclick="show_comment(this)" onblur="hide_comment(this)">--%>
+                            <%--<span style="font-size: 15px;">评论</span>--%>
+                        <%--</div>--%>
+                        <%--<div class="submitComment">--%>
+                            <%--<button class="btn btn-info">发表评论</button>--%>
+                        <%--</div>--%>
+                        <!--评论结束-->
+                    </div>
+                </div>
+
+            </c:forEach>
             <!--单个评论-->
-            <div class="content-area-display">
-                <div class="content-area-inline">
-                    <div class="headImg">
-                        <img src="/images/headImg/01.jpg" style="width:50px;height:50px;border-radius:inherit"/>
-                    </div>
-                    <div style="display:inline-block;margin-left:10px">
-                        <div>王春花</div>
-                        <!--todo 两行显示-->
-                        <!--<div>19:30</div>-->
-
-                    </div>
-
-                    <div class="content-info">
-                        说好的去看牙的呢，这是干啥@狗京@狗婷说好的去看牙的呢，
-                    </div>
-                    <!--三个按钮-->
-                    <div class="content-icon">
-                        <span style="margin-right:580px;font-size:15px">2015年07月06日</span>
-                        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="margin-right:10px"></span>
-                        <span class="glyphicon glyphicon-share-alt" aria-hidden="true" style="margin-right:10px"></span>
-                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                    </div>
-                    <!--三个按钮结束-->
-                    <hr style="margin-top:5px;margin-bottom:5px;border-top-color:rgb(125, 104, 104)">
-                    <!--评论区-->
-                    <div class="content-comment">
-                        <div class="comment-headImg">
-                            <img src="/images/headImg/01.jpg" style="width:35px;height:35px;border-radius:inherit"/>
-                        </div>
-                        <div style="display:inline-block;margin-left:10px">
-                            <div>李二狗&nbsp;&nbsp;:</div>
-                            <!--todo 两行显示-->
-                            <!--<div>19:30</div>-->
-
-                        </div>
-                        <div style="display:inline-block;margin-left:10px;background-color: #9cb930;width: 628px;min-height: 32px;">
-                            这个伟大历史胜利，是毛泽东同志和他的战友们，是千千万万革命志士和革命烈士，是亿万中国人民，共同为中华民族建立的伟大历史功勋。这一伟大奋斗历程和成果充分证明了毛泽东同志所说的：“我们中华民族有同自己的敌人血战到底的气概，有在自力更生的基础上光复旧物的决心，有自立于世界民族之林的能力。”
-                        </div>
-                    </div>
-                    <!--评论区结束-->
-
-                    <!--评论区-->
-                    <div class="content-comment">
-                        <div class="comment-headImg">
-                            <img src="/images/headImg/01.jpg" style="width:35px;height:35px;border-radius:inherit"/>
-                        </div>
-                        <div style="display:inline-block;margin-left:10px">
-                            <div>李二狗&nbsp;&nbsp;:</div>
-                            <!--todo 两行显示-->
-                            <!--<div>19:30</div>-->
-
-                        </div>
-                        <div style="display:inline-block;margin-left:10px;background-color: #9cb930;width: 628px;min-height: 32px;">
-                            这个伟大历史胜利，是毛泽东同志和他的战友们，是千千万万革命志士和革命烈士，是亿万中国人民，共同为中华民族建立的伟大历史功勋。这一伟大奋斗历程和成果充分证明了毛泽东同志所说的：“我们中华民族有同自己的敌人血战到底的气概，有在自力更生的基础上光复旧物的决心，有自立于世界民族之林的能力。”
-                        </div>
-                    </div>
-                    <!--评论区结束-->
-
-                    <!--评论区-->
-                    <div class="content-comment">
-                        <div class="comment-headImg">
-                            <img src="/images/headImg/01.jpg" style="width:35px;height:35px;border-radius:inherit"/>
-                        </div>
-                        <div style="display:inline-block;margin-left:10px">
-                            <div>李二狗&nbsp;&nbsp;:</div>
-                            <!--todo 两行显示-->
-                            <!--<div>19:30</div>-->
-
-                        </div>
-                        <div style="display:inline-block;margin-left:10px;background-color: #9cb930;width: 628px;min-height: 32px;">
-                            这个伟大历史胜利，是毛泽东同志和他的战友们，是千千万万革命志士和革命烈士，是亿万中国人民，共同为中华民族建立的伟大历史功勋。这一伟大奋斗历程和成果充分证明了毛泽东同志所说的：“我们中华民族有同自己的敌人血战到底的气概，有在自力更生的基础上光复旧物的决心，有自立于世界民族之林的能力。”
-                        </div>
-                    </div>
-                    <!--评论区结束-->
-
-                    <!--评论区-->
-                    <div class="content-comment">
-                        <div class="comment-headImg">
-                            <img src="/images/headImg/01.jpg" style="width:35px;height:35px;border-radius:inherit"/>
-                        </div>
-                        <div style="display:inline-block;margin-left:10px">
-                            <div>李二狗&nbsp;&nbsp;:</div>
-                            <!--todo 两行显示-->
-                            <!--<div>19:30</div>-->
-
-                        </div>
-                        <div style="display:inline-block;margin-left:10px;background-color: #9cb930;width: 628px;min-height: 32px;">
-                            这个伟大历史胜利，是毛泽东同志和他的战友们，是千千万万革命志士和革命烈士，是亿万中国人民，共同为中华民族建立的伟大历史功勋。这一伟大奋斗历程和成果充分证明了毛泽东同志所说的：“我们中华民族有同自己的敌人血战到底的气概，有在自力更生的基础上光复旧物的决心，有自立于世界民族之林的能力。”
-                        </div>
-                    </div>
-                    <!--评论区结束-->
-
-                    <!--评论区-->
-                    <div class="content-comment">
-                        <div class="comment-headImg">
-                            <img src="/images/headImg/01.jpg" style="width:35px;height:35px;border-radius:inherit"/>
-                        </div>
-                        <div style="display:inline-block;margin-left:10px">
-                            <div>李二狗&nbsp;&nbsp;:</div>
-                            <!--todo 两行显示-->
-                            <!--<div>19:30</div>-->
-
-                        </div>
-                        <div style="display:inline-block;margin-left:10px;background-color: #9cb930;width: 628px;min-height: 32px;">
-                            这个伟大历史胜利，是毛泽东同志和他的战友们，是千千万万革命志士和革命烈士，是亿万中国人民，共同为中华民族建立的伟大历史功勋。这一伟大奋斗历程和成果充分证明了毛泽东同志所说的：“我们中华民族有同自己的敌人血战到底的气概，有在自力更生的基础上光复旧物的决心，有自立于世界民族之林的能力。”
-                        </div>
-                    </div>
-                    <!--评论展示结束-->
-
-                    <!--评论窗口-->
-                    <div contentEditable=true class="comment-area" onclick="show_comment(this)" onblur="hide_comment(this)">
-                        <span style="font-size: 15px;">评论</span>
-                    </div>
-                    <div class="submitComment">
-                        <button class="btn btn-info">发表评论</button>
-                    </div>
-                    <!--评论结束-->
-                </div>
-            </div>
-
-            <div class="content-area-display">
-                <div class="content-area-inline">
-                    <div class="headImg">
-                        <img src="/images/headImg/01.jpg" style="width:50px;height:50px;border-radius:inherit"/>
-                    </div>
-                    <div style="display:inline-block;margin-left:10px">
-                        <div>王春花</div>
-                        <!--todo 两行显示-->
-                        <!--<div>19:30</div>-->
-
-                    </div>
-
-                    <div class="content-info">
-                        说好的去看牙的呢，这是干啥@狗京@狗婷说好的去看牙的呢，这是干啥@狗京@狗婷说好的去看牙的呢，这是干啥@狗京@狗婷说好的去看牙的呢，这是干啥@狗京@狗婷说好的去看牙的呢，这是干啥@狗京@狗婷说好的去看牙的呢，这是干啥@狗京@狗婷说好的去看牙的呢，这是干啥@狗京@狗婷说好的去看牙的呢，这是干啥@狗京@狗婷说好的去看牙的呢，这是干啥@狗京@狗婷说好的去看牙的呢，这是干啥@狗京@狗婷说好的去看牙的呢，这是干啥@狗京@狗婷说好的去看牙的呢，这是干啥@狗京@狗婷说好的去看牙的呢，这是干啥@狗京@狗婷说好的去看牙的呢，这是干啥@狗京@狗婷说好的去看牙的呢，这是干啥@狗京@狗婷说好的去看牙的呢，这是干啥@狗京@狗婷说好的去看牙的呢，这是干啥@狗京@狗婷说好的去看牙的呢，这是干啥@狗京@狗婷说好的去看牙的呢，这是干啥@狗京@狗婷说好的去看牙的呢，这是干啥@狗京@狗婷说好的去看牙的呢，这是干啥@狗京@狗婷说好的去看牙的呢，这是干啥@狗京@狗婷说好的去看牙的呢，这是干啥@狗京@狗婷说好的去看牙的呢，这是干啥@狗京@狗婷说好的去看牙的呢，这是干啥@
-                    </div>
-                    <!--三个按钮-->
-                    <div class="content-icon">
-                        <span style="margin-right:580px;font-size:15px">2015年07月06日</span>
-                        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="margin-right:10px"></span>
-                        <span class="glyphicon glyphicon-share-alt" aria-hidden="true" style="margin-right:10px"></span>
-                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                    </div>
-                    <!--三个按钮结束-->
-                    <hr style="margin-top:5px;margin-bottom:5px;border-top-color:rgb(125, 104, 104)">
-                    <!--评论区-->
-                    <div class="content-comment">
-                        <div class="comment-headImg">
-                            <img src="/images/headImg/01.jpg" style="width:35px;height:35px;border-radius:inherit"/>
-                        </div>
-                        <div style="display:inline-block;margin-left:10px">
-                            <div>李二狗&nbsp;&nbsp;:</div>
-                            <!--todo 两行显示-->
-                            <!--<div>19:30</div>-->
-
-                        </div>
-                        <div style="display:inline-block;margin-left:10px;background-color: #9cb930;width: 628px;min-height: 32px;">
-                            这个伟大历史胜利，是毛泽东同志和他的战友们，是千千万万革命志士和革命烈士，是亿万中国人民，共同为中华民族建立的伟大历史功勋。这一伟大奋斗历程和成果充分证明了毛泽东同志所说的：“我们中华民族有同自己的敌人血战到底的气概，有在自力更生的基础上光复旧物的决心，有自立于世界民族之林的能力。”
-                        </div>
-                    </div>
-                    <!--评论区结束-->
-
-                    <!--评论区-->
-                    <div class="content-comment">
-                        <div class="comment-headImg">
-                            <img src="/images/headImg/01.jpg" style="width:35px;height:35px;border-radius:inherit"/>
-                        </div>
-                        <div style="display:inline-block;margin-left:10px">
-                            <div>李二狗&nbsp;&nbsp;:</div>
-                            <!--todo 两行显示-->
-                            <!--<div>19:30</div>-->
-
-                        </div>
-                        <div style="display:inline-block;margin-left:10px;background-color: #9cb930;width: 628px;min-height: 32px;">
-                            这个伟大历史胜利，是毛泽东同志和他的战友们，是千千万万革命志士和革命烈士，是亿万中国人民，共同为中华民族建立的伟大历史功勋。这一伟大奋斗历程和成果充分证明了毛泽东同志所说的：“我们中华民族有同自己的敌人血战到底的气概，有在自力更生的基础上光复旧物的决心，有自立于世界民族之林的能力。”
-                        </div>
-                    </div>
-                    <!--评论区结束-->
-
-                    <!--评论区-->
-                    <div class="content-comment">
-                        <div class="comment-headImg">
-                            <img src="/images/headImg/01.jpg" style="width:35px;height:35px;border-radius:inherit"/>
-                        </div>
-                        <div style="display:inline-block;margin-left:10px">
-                            <div>李二狗&nbsp;&nbsp;:</div>
-                            <!--todo 两行显示-->
-                            <!--<div>19:30</div>-->
-
-                        </div>
-                        <div style="display:inline-block;margin-left:10px;background-color: #9cb930;width: 628px;min-height: 32px;">
-                            这个伟大历史胜利，是毛泽东同志和他的战友们，是千千万万革命志士和革命烈士，是亿万中国人民，共同为中华民族建立的伟大历史功勋。这一伟大奋斗历程和成果充分证明了毛泽东同志所说的：“我们中华民族有同自己的敌人血战到底的气概，有在自力更生的基础上光复旧物的决心，有自立于世界民族之林的能力。”
-                        </div>
-                    </div>
-                    <!--评论区结束-->
-
-                    <!--评论区-->
-                    <div class="content-comment">
-                        <div class="comment-headImg">
-                            <img src="/images/headImg/01.jpg" style="width:35px;height:35px;border-radius:inherit"/>
-                        </div>
-                        <div style="display:inline-block;margin-left:10px">
-                            <div>李二狗&nbsp;&nbsp;:</div>
-                            <!--todo 两行显示-->
-                            <!--<div>19:30</div>-->
-
-                        </div>
-                        <div style="display:inline-block;margin-left:10px;background-color: #9cb930;width: 628px;min-height: 32px;">
-                            这个伟大历史胜利，是毛泽东同志和他的战友们，是千千万万革命志士和革命烈士，是亿万中国人民，共同为中华民族建立的伟大历史功勋。这一伟大奋斗历程和成果充分证明了毛泽东同志所说的：“我们中华民族有同自己的敌人血战到底的气概，有在自力更生的基础上光复旧物的决心，有自立于世界民族之林的能力。”
-                        </div>
-                    </div>
-                    <!--评论区结束-->
-
-                    <!--评论区-->
-                    <div class="content-comment">
-                        <div class="comment-headImg">
-                            <img src="/images/headImg/01.jpg" style="width:35px;height:35px;border-radius:inherit"/>
-                        </div>
-                        <div style="display:inline-block;margin-left:10px">
-                            <div>李二狗&nbsp;&nbsp;:</div>
-                            <!--todo 两行显示-->
-                            <!--<div>19:30</div>-->
-
-                        </div>
-                        <div style="display:inline-block;margin-left:10px;background-color: #9cb930;width: 628px;min-height: 32px;">
-                            这个伟大历史胜利，是毛泽东同志和他的战友们，是千千万万革命志士和革命烈士，是亿万中国人民，共同为中华民族建立的伟大历史功勋。这一伟大奋斗历程和成果充分证明了毛泽东同志所说的：“我们中华民族有同自己的敌人血战到底的气概，有在自力更生的基础上光复旧物的决心，有自立于世界民族之林的能力。”
-                        </div>
-                    </div>
-                    <!--评论展示结束-->
-
-                    <!--评论窗口-->
-                    <div contentEditable=true class="comment-area" onclick="show_comment(this)" onblur="hide_comment(this)">
-                        <span style="font-size: 15px;">评论</span>
-                    </div>
-                    <div class="submitComment">
-                        <button class="btn btn-info">发表评论</button>
-                    </div>
-                    <!--评论结束-->
-                </div>
-            </div>
-
-
-            541564
-
-
 
         </div>
     </div>

@@ -11,9 +11,9 @@
         FROM
         `account`, department_member
         WHERE
-        account.id = department_member.account_id
+        account.id = department_member.accountId
         AND
-        department_member.department_id = #{departmentId}
+        department_member.departmentId = #{departmentId}
         order by account.type ASC
         <if test="limit != 0">
             LIMIT #{start},#{limit}
@@ -27,24 +27,24 @@
         FROM
         department_member
         WHERE
-        department_member.department_id = #{departmentId}
+        department_member.departmentId = #{departmentId}
     </select>
 
     <update id="delete">
         DELETE from department_member
-        WHERE department_member.account_id = #{accountId}
-        and department_member.department_id = #{departmentId}
+        WHERE department_member.accountId = #{accountId}
+        and department_member.departmentId = #{departmentId}
     </update>
 
     <insert id="insert">
-        INSERT INTO department_member (account_id, department_id, role, remark, status, ctreatetime) VALUES
+        INSERT INTO department_member (accountId, departmentId, role, remark, status, ctreateTime) VALUES
         (#{member.accountId}, #{member.departmentId}, #{member.role}, #{member.remark}, #{member.status}, #{member.createTime})
     </insert>
 
     <select id="findManager" resultType="net.dqsy.manager.pojo.Account">
         SELECT *
-        FROM department_member, account WHERE department_member.account_id = account.id and department_member.role = #{role} AND
-        department_member.department_id = #{departmentId} ORDER  BY department_member.ctreatetime DESC
+        FROM department_member, account WHERE department_member.accountId = accountId and department_member.role = #{role} AND
+        department_member.departmentId = #{departmentId} ORDER  BY department_member.ctreateTime DESC
     </select>
 
 
@@ -53,7 +53,7 @@
         SELECT *
         FROM
         department_member
-        WHERE department_member.account_id = #{accountId}
+        WHERE department_member.accountId = #{accountId}
     </select>
 </mapper>
 

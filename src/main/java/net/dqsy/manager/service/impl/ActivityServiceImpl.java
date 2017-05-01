@@ -40,4 +40,9 @@ public class ActivityServiceImpl implements IActivityService {
     public void add(Activity activity) {
         activityMapper.add(activity);
     }
+
+    @Override
+    public void deleteById(long activityId) {
+        activityMapper.deleteById(activityId);
+    }
 }
