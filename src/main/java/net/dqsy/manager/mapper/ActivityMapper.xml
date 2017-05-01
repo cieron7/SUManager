@@ -53,5 +53,11 @@
         </if>
     </select>
 
+    <insert id="add">
+        INSERT INTO activity(title, subtitle, content, limitnum, starttime, endtime, departmentId, type)
+        VALUES
+        (#{activity.title}, #{activity.subTitle}, #{activity.content}, #{activity.limitNum}, #{activity.startTime}, #{activity.endTime}, #{activity.apartmentId}, #{activity.type})
+    </insert>
+
 
 </mapper>

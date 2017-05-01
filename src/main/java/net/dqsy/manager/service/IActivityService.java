@@ -15,4 +15,6 @@ public interface IActivityService {
 
     int getTotalCount(List<Integer> types);
 
+    void add(Activity activity);
+
 }

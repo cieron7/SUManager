@@ -7,13 +7,16 @@ import java.util.Date;
  */
 public class Activity {
 
+    public static int ACTIVITY = 1;
+    public static int MOMENT = 2;
+
     private long id;    //id
 
     private String title;   //活动名称
 
     private String subTitle;    //小标题
 
-    private String context;     //活动内容
+    private String content;     //活动内容
 
     private int limitNum;       //分类名称
 
@@ -51,12 +54,12 @@ public class Activity {
         this.subTitle = subTitle;
     }
 
-    public String getContext() {
-        return context;
+    public String getContent() {
+        return content;
     }
 
-    public void setContext(String context) {
-        this.context = context;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public int getLimitNum() {

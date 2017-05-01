@@ -17,14 +17,19 @@
 		</div>
 		<div class="col-md-9">
             <jsp:include page="../common/breadcrumbs.jsp"/>
+
+			<div class="row search" >
+				<div class="col-md-6">
+				</div>
+				<div class="col-md-6" >
+					<button id="department_add_btn" class="btn btn-primary"  style="float: right;" onclick="javascript:window.location.href='${pageContext.request.contextPath}/activity/add'">添加</button>
+				</div>
+			</div>
 			<div>
 				<table class="table table-hover  table-bordered table-striped" style="margin-bottom: 0px;">
-
-
 					<tr>
 						<th>活动编号</th>
 						<th>活动标题</th>
-						<th>活动人数</th>
 						<th>开始时间</th>
 						<th>结束时间</th>
 						<th>操作</th>
@@ -33,10 +38,9 @@
 						<tr>
 							<td>${activity.id }</td>
 							<td>${activity.title }</td>
-							<td>${activity.limitNum }</td>
 							<td><fmt:formatDate value="${activity.startTime}" pattern="yyyy/MM/dd HH:mm"/></td>
 							<td><fmt:formatDate value="${activity.endTime}" pattern="yyyy/MM/dd HH:mm"/></td>
-							<td><button type="button" class="btn btn-info btn-xs" onclick="javascript:window.location.href='${pageContext.request.contextPath}/teacher?action=preSave&id=${teacher.id }'">修改</button>&nbsp;
+							<td><button type="button" class="btn btn-info btn-xs" onclick="javascript:window.location.href='${pageContext.request.contextPath}/activity/detail?activityId=${activity.id }'">详情</button>&nbsp;
 								<button type="button" class="btn btn-danger btn-xs" onclick="teacherDelete(${teacher.id })">删除</button></td>
 						</tr>
 					</c:forEach>

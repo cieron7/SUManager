@@ -15,4 +15,7 @@ public interface ActivityMapper {
     void save(@Param("activity") Activity activity);
 
     int getTotalCount(@Param("types") List<Integer> types);
+
+    void add(@Param("activity")Activity activity);
+
 }

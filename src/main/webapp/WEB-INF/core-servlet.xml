@@ -33,7 +33,7 @@
         <property name="uploadTempDir" value="/WEB-INF/temp"/>
         <property name="defaultEncoding" value="UTF-8"/>
         <!-- 设定文件上传的最大值50MB，50*1024*1024 -->
-        <property name="maxUploadSize" value="52428800"/>
+        <property name="maxUploadSize" value="4294967296"/>
     </bean>
 
     <bean id="beanNameUrlMapping"
@@ -57,8 +57,6 @@
         </property>
     </bean>
 
-    <!--文件上传-->
-    <bean id="upload" class="net.dqsy.manager.common.upload.FileUpload"/>
 
     <bean name="/ueditController.do" class="net.dqsy.manager.controller.uedit.UeditController">
         <property name="methodNameResolver">

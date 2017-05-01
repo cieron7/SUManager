@@ -17,4 +17,6 @@ public interface IDepartmentMemberService {
     void insert(DepartmentMember member);
 
     Account findManager(long departmentId, int role);
+
+    DepartmentMember findMemberByAccountId(long accountId);
 }

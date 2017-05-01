@@ -4,6 +4,7 @@ import net.dqsy.manager.mapper.DepartmentMemberMapper;
 import net.dqsy.manager.pojo.Account;
 import net.dqsy.manager.pojo.DepartmentMember;
 import net.dqsy.manager.service.IDepartmentMemberService;
+import net.dqsy.manager.service.IDepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,8 @@ import java.util.List;
 public class DepartmentMemberServiceImpl implements IDepartmentMemberService{
     @Autowired
     private DepartmentMemberMapper departmentMemberMapper;
+    @Autowired
+    private IDepartmentService departmentService;
     @Override
     public List<Account> findDepartMemberList(long departmentId, int start, int limit) {
         return departmentMemberMapper.findDepartmentMemberList(departmentId, (start - 1) * limit, limit);
@@ -39,6 +42,15 @@ public class DepartmentMemberServiceImpl implements IDepartmentMemberService{
         if(members.size() > 0){
             Account account = members.get(0);
             return account;
+        }
+        return null;
+    }
+
+    @Override
+    public DepartmentMember findMemberByAccountId(long accountId) {
+        List<DepartmentMember> memberList = departmentMemberMapper.findMemberByAccountId(accountId);
+        if(memberList.size() > 0){
+            return memberList.get(0);
         }
         return null;
     }

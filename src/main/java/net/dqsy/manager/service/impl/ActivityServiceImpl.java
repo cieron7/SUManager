@@ -35,4 +35,9 @@ public class ActivityServiceImpl implements IActivityService {
 
         return activityMapper.getTotalCount(types);
     }
+
+    @Override
+    public void add(Activity activity) {
+        activityMapper.add(activity);
+    }
 }
