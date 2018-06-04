@@ -10,7 +10,7 @@
 ### 本地host修改
     127.0.0.1 su.desy.net
     127.0.0.1 img.desy.net
-    
+
 ### nginx
     worker_processes  1;
         events {
@@ -38,3 +38,5 @@
                 }
             }
         }
+        
+        ...
